@@ -1,0 +1,71 @@
+/* Title Box */
+.title-box {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 35px 25px;
+  border-radius: 18px;
+  text-align: center;
+  margin: 60px auto 40px;
+  max-width: 700px;
+
+  backdrop-filter: blur(10px);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 1s ease forwards;
+}
+
+/* Subtitle */
+.title-box .subtitle {
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: aqua;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+/* Main Title */
+.title-box h2 {
+  font-size: 32px;
+  color: #ffffff;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+/* Animation */
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ---------- Tablet ---------- */
+@media (max-width: 768px) {
+  .title-box {
+    padding: 30px 20px;
+  }
+
+  .title-box h2 {
+    font-size: 26px;
+  }
+}
+
+/* ---------- Mobile ---------- */
+@media (max-width: 480px) {
+  .title-box {
+    padding: 25px 18px;
+    margin: 40px 10px;
+  }
+
+  .title-box h2 {
+    font-size: 22px;
+  }
+
+  .title-box .subtitle {
+    font-size: 12px;
+  }
+}

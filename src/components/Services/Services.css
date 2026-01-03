@@ -1,0 +1,110 @@
+/* Section */
+.services-section {
+  padding: 80px 20px;
+  color: #0adbe2;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* Heading */
+.section-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  text-align: center;
+  color: #cbd5f5;
+  margin-bottom: 50px;
+}
+
+/* Services Grid */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+/* Card */
+.service-card {
+  background: #1e293b;
+  padding: 25px;
+  border-radius: 16px;
+  text-align: center;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.3);
+  transform: translateY(40px);
+  opacity: 0;
+  transition: all 0.8s ease;
+}
+
+.service-card.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.service-card img {
+  width: 90px;
+  height: auto;
+  margin-bottom: 20px;
+}
+
+.service-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  font-size: 0.95rem;
+  color: #e5e7eb;
+}
+
+/* Hover Effect */
+.service-card:hover {
+  transform: translateY(-10px) scale(1.03);
+}
+
+/* Desktop Advertisement */
+.desktop-ad {
+  margin-top: 70px;
+  text-align: center;
+}
+
+.desktop-ad img {
+  width: 100%;
+  max-width: 900px;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+}
+
+/* ========================= */
+/* Responsive Styles */
+/* ========================= */
+
+@media (max-width: 992px) {
+  .services-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .services-section {
+    padding: 60px 15px;
+  }
+
+  .section-title {
+    font-size: 2rem;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .desktop-ad {
+    display: none; /* hide desktop ad on mobile */
+  }
+}

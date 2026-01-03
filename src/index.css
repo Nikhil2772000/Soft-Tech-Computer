@@ -1,0 +1,88 @@
+/* GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* HTML */
+html {
+  scroll-behavior: smooth;
+}
+
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Outfit", sans-serif;
+}
+
+/* BODY */
+body {
+  background-image: url("./assets/about.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  padding-top: 70px;
+
+  margin: 0;
+}
+
+/* match navbar height */
+
+
+
+
+/* LINKS */
+a {
+  text-decoration: none;
+  color: inherit;
+  line-height: 1.2;
+  cursor: pointer;
+}
+
+a:hover {
+  opacity: 0.85;
+}
+
+.container {
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+li a {
+  text-decoration: none;
+}
+
+.btn {
+  color: rgb(14, 5, 5);
+  font-size: 16px;
+  padding: 10px 22px;
+  background: linear-gradient(135deg, #ff7a18, #ffb347);
+  color: #fff;
+  border: none;
+  border-radius: 25px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+}
+
+/* Hover effect */
+.btn:hover {
+  background: linear-gradient(135deg, #ff6a00, #ff9f1a);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Click effect */
+.btn:active {
+  transform: scale(0.95);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+  .btn {
+    padding: 8px 18px;
+    font-size: 14px;
+  }
+}
+
