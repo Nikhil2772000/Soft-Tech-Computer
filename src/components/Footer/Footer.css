@@ -1,0 +1,159 @@
+/* Footer Main */
+.footer {
+  background-color: #111;
+  color: #fff;
+  padding: 40px 20px 20px;
+  font-family: Arial, sans-serif;
+  animation: fadeIn 1s ease-in;
+}
+
+/* Footer Container */
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+/* ================= LEFT ================= */
+.footer-left {
+  flex: 1 1 250px;
+}
+
+.footer-logo {
+  width: 120px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.footer-logo:hover {
+  transform: scale(1.05);
+}
+
+.footer-left p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ================= MIDDLE ================= */
+.footer-middle {
+  flex: 1 1 150px;
+}
+
+.footer-middle h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.footer-middle ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-middle ul li {
+  margin-bottom: 8px;
+}
+
+.footer-middle ul li a {
+  text-decoration: none;
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+.footer-middle ul li a:hover {
+  color: #00bfff;
+}
+
+/* ================= RIGHT ================= */
+.footer-right {
+  flex: 1 1 200px;
+}
+
+.footer-right h3 {
+  font-size: 16px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.footer-right ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-right ul li {
+  margin-bottom: 8px;
+}
+
+.footer-right ul li a {
+  text-decoration: none;
+  color: #ccc;
+  transition: color 0.3s;
+}
+
+.footer-right ul li a:hover {
+  color: #00bfff;
+}
+
+/* Social Links */
+.footer-social {
+  margin-top: 15px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.footer-social a {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: #fff;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.footer-social a:hover {
+  transform: scale(1.05);
+  color: #00bfff;
+}
+
+.footer-social img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
+/* ================= BOTTOM ================= */
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  font-size: 12px;
+  color: #f1eeee;
+  border-top: 1px solid #d10f0f;
+  padding-top: 15px;
+}
+
+/* Fade In Animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .footer-container {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .footer-left, .footer-middle, .footer-right {
+    flex: 1 1 100%;
+  }
+
+  .footer-social {
+    justify-content: center;
+    gap: 20px;
+  }
+}

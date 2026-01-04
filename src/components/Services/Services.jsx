@@ -16,24 +16,40 @@ const Services = () => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add("show");
+                        observer.unobserve(entry.target);
                     }
                 });
             },
-            { threshold: 0.2 }
+            { threshold: 0.25 }
         );
 
         cards.forEach(card => observer.observe(card));
-    }, []);
 
+        return () => observer.disconnect();
+    }, []);
     return (
         <section className="services-section">
             <div className="container">
 
                 {/* Heading */}
-                <h2 className="section-title">Services</h2>
+
                 <p className="section-subtitle">
-                    We are a trusted provider of quality education and certification services for your career growth.
+                    <strong>Soft Tech Computer</strong> is a <strong>trusted provider</strong> of
+                    <strong> quality education</strong> and
+                    <strong> certification services</strong> dedicated to supporting your
+                    <strong> career growth</strong>. We offer
+                    <strong> government-recognized certificates</strong>,
+                    <strong> student ID cards</strong>, and
+                    <strong> MSCIT books</strong> to ensure a complete and authentic learning
+                    experience. Our institute focuses on
+                    <strong> practical knowledge</strong>,
+                    <strong> industry-relevant training</strong>, and
+                    <strong> professional guidance</strong>, helping students build strong
+                    technical skills and confidence for a successful future in the
+                    <strong> IT and computer education field</strong>.
                 </p>
+
+
 
                 {/* Services Cards */}
                 <div className="services-grid">

@@ -5,7 +5,7 @@ const Title = ({ subTitle, title }) => {
   return (
     <div className="title-box">
       <span className="subtitle">{subTitle}</span>
-      <h2>{title}</h2>
+      <h2 className="title-heading">{title}</h2>
     </div>
   );
 };

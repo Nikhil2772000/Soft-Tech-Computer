@@ -1,25 +1,31 @@
-import React from "react";
+// App.jsx
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
-import Hero from "./components/Navbar/Hero/Hero";
-import Title from "./components/Title/Title";
+import Home from "./Home";
+
+// Pages
 import About from "./components/About/About";
 import Services from "./components/Services/Services";
 import Testimonials from "./components/Testimonials/Testimonials";
+import Contact from "./components/Contact/Contact";
+import Footer from "./components/Footer/Footer";
 
 const App = () => {
   return (
     <>
+      {/* Navbar always visible */}
       <Navbar />
-      <Hero />
 
-      <div className="container">
-        <Title subTitle="About" title="What About Soft Tech" />
-        <About />
-        <Title subTitle="Services" title="Our Services" />
-        <Services/>
-        <Title subTitle="Testmonials" title="What Student Says" />
-        <Testimonials/>
-      </div>
+      {/* Routes */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/testimonials" element={<Testimonials />} />
+        <Route path="/contact" element={<Contact />} />
+      </Routes>
+
+      <Footer/>
     </>
   );
 };

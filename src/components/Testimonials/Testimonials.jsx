@@ -101,7 +101,6 @@ const Testimonials = () => {
       id="testimonials"
       ref={sectionRef}
     >
-      <h2 className="section-title">What Our Students Say</h2>
 
       <div className="testimonial-card">
         <img src={image} alt={name} className="user-img" />
