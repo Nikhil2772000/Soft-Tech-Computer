@@ -18,18 +18,19 @@ const Contact = () => {
     message: "",
   });
 
-  const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState({});
+  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [visible, setVisible] = useState(false);
 
-  /* Scroll Animation */
+  /* Scroll animation */
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setVisible(true),
       { threshold: 0.2 }
     );
 
-    sectionRef.current && observer.observe(sectionRef.current);
+    if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
@@ -38,9 +39,9 @@ const Contact = () => {
 
   const validate = () => {
     let err = {};
-    Object.keys(formData).forEach(
-      (key) => !formData[key] && (err[key] = true)
-    );
+    Object.keys(formData).forEach((key) => {
+      if (!formData[key]) err[key] = true;
+    });
     return err;
   };
 
@@ -48,9 +49,20 @@ const Contact = () => {
     e.preventDefault();
     const err = validate();
 
-    if (Object.keys(err).length === 0) {
+    if (Object.keys(err).length) {
+      setErrors(err);
+      return;
+    }
+
+    setErrors({});
+    setLoading(true);
+
+    // simulate API call
+    setTimeout(() => {
+      setLoading(false);
       setSubmitted(true);
-      setErrors({});
+
+      // reset form
       setFormData({
         firstName: "",
         lastName: "",
@@ -58,9 +70,10 @@ const Contact = () => {
         mobile: "",
         message: "",
       });
-    } else {
-      setErrors(err);
-    }
+
+      // auto hide success message
+      setTimeout(() => setSubmitted(false), 4000);
+    }, 2000);
   };
 
   return (
@@ -68,21 +81,28 @@ const Contact = () => {
       ref={sectionRef}
       className={`contact-section ${visible ? "show" : ""}`}
     >
-
       <div className="contact-container">
+
         {/* LEFT INFO */}
         <div className="contact-info">
           <div className="info-item">
             <FaEnvelope />
-            <span>softtech@gmail.com</span>
+            <a href="mailto:info@softtechcomputer.com">
+              info@softtechcomputer.com
+            </a>
           </div>
+
           <div className="info-item">
             <FaPhoneAlt />
-            <span>+91 98765 43210</span>
+            <a href="tel:+918380863037">+91 8380863037</a>
           </div>
+
           <div className="info-item">
             <FaMapMarkerAlt />
-            <span>Soft Tech Computer, Motala, Maharashtra</span>
+            <span>
+              Buldhana Rd, near Suyog Hospital, Phata, Motala,
+              Maharashtra 443103
+            </span>
           </div>
         </div>
 
@@ -120,10 +140,13 @@ const Contact = () => {
               name="mobile"
               placeholder="Mobile Number"
               value={formData.mobile}
-              onChange={handleChange}
+              onChange={(e) => {
+                const value = e.target.value.replace(/\D/g, "");
+                setFormData({ ...formData, mobile: value });
+              }}
+              maxLength="10"
               className={errors.mobile ? "error" : ""}
             />
-
             <textarea
               name="message"
               placeholder="Your Message"
@@ -132,7 +155,9 @@ const Contact = () => {
               className={errors.message ? "error" : ""}
             />
 
-            <button className="submit-btn">Send Message</button>
+            <button type="submit" className="submit-btn" disabled={loading}>
+              {loading ? "Sending..." : "Send Message"}
+            </button>
           </form>
 
           {submitted && (
@@ -144,13 +169,14 @@ const Contact = () => {
         </div>
       </div>
 
-      {/* GOOGLE MAP – MOTALA */}
+      {/* GOOGLE MAP */}
       <div className="map-container">
         <iframe
           title="Soft Tech Computer Motala"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          src="https://www.google.com/maps?q=Soft+Tech+Computer+Motala&output=embed"
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3736.899689284405!2d76.2016072!3d20.6731234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd9f10b063be8f9%3A0xe6a51e8167397678!2sSoft%20Tech%20Computer%20Motala!5e0!3m2!1sen!2sin!4v1702100000000"
+          allowFullScreen
         ></iframe>
       </div>
     </section>

@@ -4,6 +4,7 @@ import logo from "../../assets/logo.png";
 import whatpp from "../../assets/whatpp.avif";
 import facebook from "../../assets/facebook.webp";
 
+
 const Footer = () => {
     const phone = "918380863037";
     const message = "Hello, I want to know about your courses.";
@@ -41,7 +42,7 @@ const Footer = () => {
                 <div className="footer-right">
                     <h3>Legal Support</h3>
                     <ul>
-                        <li><a href="/privacy-policy">Privacy Policy</a></li>
+                        <li><a href="/privacy-policy">Privacy Policy </a></li>
                         <li><a href="/terms-of-service">Terms of Service</a></li>
                     </ul>
 
@@ -49,7 +50,7 @@ const Footer = () => {
                         <a href={whatsappURL} target="_blank" rel="noreferrer" className="social-link">
                             <img src={whatpp} alt="WhatsApp" />
                         </a>
-                        <a href="https://facebook.com/your-page" target="_blank" rel="noreferrer" className="social-link">
+                        <a href="https://www.facebook.com/share/1AsZNB35rX/" target="_blank" rel="noreferrer" className="social-link">
                             <img src={facebook} alt="Facebook" />
                         </a>
                     </div>
@@ -59,7 +60,7 @@ const Footer = () => {
 
             {/* Bottom Copyright */}
             <div className="footer-bottom">
-                © 2026 Guru Software Solutions. All rights reserved.
+                © 2026 Soft Tech Computer. All rights reserved.
             </div>
         </footer>
     );
