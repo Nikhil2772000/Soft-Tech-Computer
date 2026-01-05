@@ -6,8 +6,8 @@ import Title from "./components/Title/Title";
 import About from "./components/About/About";
 import Services from "./components/Services/Services";
 import Testimonials from "./components/Testimonials/Testimonials";
-import Contact from "./components/Contact/Contact";
 import Faq from "./components/Faq/Faq";
+import Contact from "./components/Contact us/Contactus";
 
 const Home = () => {
   return (
@@ -44,7 +44,7 @@ const Home = () => {
       {/* CONTACT */}
       <section id="contact">
         <Title subTitle="Contact Us" title="Get In Touch" />
-        <Contact />
+       <Contact/>
       </section>
 
       
@@ -53,6 +53,8 @@ const Home = () => {
         <Title subTitle="FAQ" title="Ask Questions" />
         <Faq/>
       </section>
+
+      
     </main>
   );
 };

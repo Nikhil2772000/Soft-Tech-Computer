@@ -1,5 +1,5 @@
 import React from "react";
-import "./Termofservice.css";
+import './Service.css';
 
 const Termofservice = () => {
   return (

@@ -51,9 +51,9 @@ const Navbar = () => {
 
   /* ================= HOME CLICK (FULL REFRESH) ================= */
   const handleHomeClick = () => {
-    window.location.reload();
+    navigate("/");
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
   return (
     <nav className={`navbar ${sticky ? "sticky" : ""}`}>
       <div className="nav-container">

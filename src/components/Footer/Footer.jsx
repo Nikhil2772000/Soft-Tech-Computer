@@ -43,16 +43,31 @@ const Footer = () => {
                     <h3>Legal Support</h3>
                     <ul>
                         <li><a href="/privacy-policy">Privacy Policy </a></li>
-                        <li><a href="/terms-of-service">Terms of Service</a></li>
+                        <li><a href="/term-of-service">Terms of Service</a></li>
                     </ul>
 
                     <div className="footer-social">
-                        <a href={whatsappURL} target="_blank" rel="noreferrer" className="social-link">
+
+                        <a
+                            href={whatsappURL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="social-link"
+                            aria-label="Chat with us on WhatsApp"
+                        >
                             <img src={whatpp} alt="WhatsApp" />
                         </a>
-                        <a href="https://www.facebook.com/share/1AsZNB35rX/" target="_blank" rel="noreferrer" className="social-link">
+
+                        <a
+                            href="https://www.facebook.com/share/1AsZNB35rX/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="social-link"
+                            aria-label="Visit our Facebook page"
+                        >
                             <img src={facebook} alt="Facebook" />
                         </a>
+
                     </div>
                 </div>
 
