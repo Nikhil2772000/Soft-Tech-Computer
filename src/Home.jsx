@@ -7,54 +7,45 @@ import About from "./components/About/About";
 import Services from "./components/Services/Services";
 import Testimonials from "./components/Testimonials/Testimonials";
 import Faq from "./components/Faq/Faq";
-import Contact from "./components/Contact us/Contactus";
+import Contact from "./components/Contact us/Contact";
 
 const Home = () => {
   return (
     <main>
-      {/* HERO */}
+      {/* HERO SECTION */}
       <section id="home">
         <Hero />
       </section>
 
-      {/* ABOUT */}
+      {/* ABOUT SECTION */}
       <section id="about">
         <Title subTitle="About" title="What About Soft Tech" />
         <About />
       </section>
 
-      {/* SERVICES */}
+      {/* SERVICES SECTION */}
       <section id="services">
         <Title subTitle="Services" title="Our Services" />
         <Services />
       </section>
 
-      {/* COURSES */}
-      <section id="courses">
-        <Title subTitle="Courses" title="Our Courses" />
-        {/* Add Courses component here */}
-      </section>
-
-      {/* TESTIMONIALS */}
+      {/* TESTIMONIALS SECTION */}
       <section id="testimonials">
-        <Title subTitle="Testimonials" title="What Students Says" />
+        <Title subTitle="Testimonials" title="What Students Say" />
         <Testimonials />
       </section>
 
-      {/* CONTACT */}
+      {/* CONTACT SECTION */}
       <section id="contact">
         <Title subTitle="Contact Us" title="Get In Touch" />
-       <Contact/>
+        <Contact />
       </section>
 
-      
-      {/* FAQ */}
-      <section id="faq's">
+      {/* FAQ SECTION */}
+      <section id="faq">
         <Title subTitle="FAQ" title="Ask Questions" />
-        <Faq/>
+        <Faq />
       </section>
-
-      
     </main>
   );
 };

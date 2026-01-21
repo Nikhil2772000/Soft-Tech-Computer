@@ -1,0 +1,137 @@
+/* ================= THANK YOU SECTION ================= */
+.thanku-section {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  transition: background-color 1.2s ease-in-out;
+  animation: bgPulse 6s infinite alternate;
+}
+
+/* Background soft pulse */
+@keyframes bgPulse {
+  from {
+    filter: brightness(1);
+  }
+  to {
+    filter: brightness(1.1);
+  }
+}
+
+/* ================= CARD ================= */
+.thanku-card {
+  background: #ffffff;
+  max-width: 520px;
+  width: 100%;
+  padding: 45px 40px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
+  animation: slideUp 0.9s ease forwards;
+}
+
+/* Card entrance animation */
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ================= TEXT ================= */
+.thanku-title {
+  font-size: 36px;
+  margin-bottom: 15px;
+  color: #0f172a;
+  animation: pop 0.8s ease;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.thanku-text {
+  font-size: 16px;
+  color: #334155;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.thanku-sub {
+  font-size: 15px;
+  color: #475569;
+  margin-bottom: 28px;
+}
+
+/* ================= BUTTON ================= */
+.thanku-btn {
+  display: inline-block;
+  padding: 14px 34px;
+  background: linear-gradient(
+    135deg,
+    #ff6b6b,
+    #feca57,
+    #48dbfb,
+    #1dd1a1
+  );
+  background-size: 300% 300%;
+  color: #0f172a;
+  font-weight: 600;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: gradientMove 5s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.thanku-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .thanku-card {
+    padding: 35px 25px;
+  }
+
+  .thanku-title {
+    font-size: 30px;
+  }
+
+  .thanku-text {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .thanku-title {
+    font-size: 26px;
+  }
+
+  .thanku-btn {
+    width: 100%;
+    padding: 14px 0;
+  }
+}

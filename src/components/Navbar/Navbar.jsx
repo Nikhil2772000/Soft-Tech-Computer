@@ -83,36 +83,7 @@ const Navbar = () => {
             <span className="nav-link">Services</span>
           </li>
 
-          {/* COURSES */}
-          <li
-            className={`dropdown ${dropdownOpen ? "open" : ""}`}
-            onMouseEnter={() => window.innerWidth > 768 && setDropdownOpen(true)}
-            onMouseLeave={() => window.innerWidth > 768 && setDropdownOpen(false)}
-          >
-            <span
-              className="dropdown-link"
-              onClick={() =>
-                window.innerWidth <= 768 &&
-                setDropdownOpen(!dropdownOpen)
-              }
-            >
-              Courses <span className={`arrow ${dropdownOpen ? "rotate" : ""}`}>▾</span>
-            </span>
-
-            <ul className={`dropdown-menu ${dropdownOpen ? "show" : ""}`}>
-              <li><NavLink to="/courses/tally" onClick={closeMenu}>📘 Tally</NavLink></li>
-              <li><NavLink to="/courses/c" onClick={closeMenu}>💻 C Language</NavLink></li>
-              <li><NavLink to="/courses/cpp" onClick={closeMenu}>⚙️ C++</NavLink></li>
-              <li><NavLink to="/courses/java" onClick={closeMenu}>☕ Java</NavLink></li>
-              <li><NavLink to="/courses/python" onClick={closeMenu}>🐍 Python</NavLink></li>
-
-              {/* NEW COURSES */}
-              <li><NavLink to="/courses/web-design" onClick={closeMenu}>🌐 Web Design</NavLink></li>
-              <li><NavLink to="/courses/networking" onClick={closeMenu}>🖧 Hardware & Networking</NavLink></li>
-              <li><NavLink to="/courses/english-speaking" onClick={closeMenu}>🗣️ English Speaking</NavLink></li>
-            </ul>
-          </li>
-
+        
           <li onClick={() => scrollToSection("testimonials")}>
             <span className="nav-link">Testimonials</span>
           </li>

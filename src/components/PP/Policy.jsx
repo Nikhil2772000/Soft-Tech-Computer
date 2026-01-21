@@ -5,6 +5,7 @@ import "./Policy.css";
 const Privacypolicy = () => {
   return (
     <section className="privacy-container">
+        <div style={{ padding: "120px 20px" }}>
       <div className="privacy-wrapper animate">
         <h1 className="privacy-title">Privacy Policy</h1>
 
@@ -77,6 +78,7 @@ const Privacypolicy = () => {
             <strong>Phone:</strong> +91 8380863037
           </p>
         </div>
+      </div>
       </div>
     </section>
   );

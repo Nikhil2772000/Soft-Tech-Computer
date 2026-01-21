@@ -1,150 +1,196 @@
-/* ================= FOOTER ================= */
+/* =========================
+   FOOTER BASE
+========================= */
 .footer {
-  background-color: #111;
-  color: #fff;
-  padding: 40px 20px 20px;
-  font-family: Arial, sans-serif;
-  animation: fadeIn 0.8s ease-in;
+  background: linear-gradient(135deg, #020617, #0f172a, #020617);
+  color: #cbd5f5;
+  padding: 60px 20px 0;
+  font-family: "Segoe UI", system-ui, sans-serif;
 }
 
-/* Container */
+/* =========================
+   CONTAINER
+========================= */
 .footer-container {
   max-width: 1200px;
   margin: auto;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
 }
 
-/* ================= LEFT ================= */
-.footer-left {
-  flex: 1 1 260px;
-}
-
+/* =========================
+   LEFT SECTION (LOGO + TEXT)
+========================= */
 .footer-logo {
-  width: 120px;
-  margin-bottom: 12px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+  width: 150px;
+  display: block;
+
+  /* Entrance animation */
+  opacity: 0;
+  transform: translate3d(0, 25px, 0);
+  animation: footerLogoReveal 0.9s ease-out forwards;
+
+  /* Hover animation */
+  transition: transform 0.35s ease;
 }
 
 .footer-logo:hover {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
 .footer-left p {
+  margin-top: 16px;
   font-size: 14px;
-  line-height: 1.6;
-  color: #ccc;
+  line-height: 1.7;
 }
 
-/* ================= MIDDLE ================= */
-.footer-middle {
-  flex: 1 1 180px;
-}
-
-.footer-middle h3 {
-  font-size: 16px;
-  margin-bottom: 12px;
-}
-
-.footer-middle ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-middle li {
-  margin-bottom: 8px;
-}
-
-.footer-middle a {
-  text-decoration: none;
-  color: #ccc;
-  transition: color 0.3s ease;
-}
-
-.footer-middle a:hover {
-  color: #00bfff;
-}
-
-/* ================= RIGHT ================= */
-.footer-right {
-  flex: 1 1 220px;
-}
-
-.footer-right h3 {
-  font-size: 16px;
-  margin-bottom: 12px;
-}
-
-.footer-right ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-right li {
-  margin-bottom: 8px;
-}
-
-.footer-right a {
-  text-decoration: none;
-  color: #ccc;
-  transition: color 0.3s ease;
-}
-
-.footer-right a:hover {
-  color: #00bfff;
-}
-
-/* ================= SOCIAL ================= */
-.footer-social {
-  margin-top: 15px;
-  display: flex;
-  gap: 15px;
-}
-
-.social-link img {
-  width: 32px;
-  height: 32px;
-  transition: transform 0.3s ease, opacity 0.3s ease;
-}
-
-.social-link:hover img {
-  transform: scale(1.15);
-  opacity: 0.9;
-}
-
-/* ================= BOTTOM ================= */
-.footer-bottom {
-  text-align: center;
-  margin-top: 30px;
-  font-size: 12px;
-  color: #ddd;
-  border-top: 1px solid #333;
-  padding-top: 15px;
-}
-
-/* ================= ANIMATION ================= */
-@keyframes fadeIn {
+/* =========================
+   LOGO KEYFRAMES
+========================= */
+@keyframes footerLogoReveal {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translate3d(0, 30px, 0);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate3d(0, 0, 0);
   }
 }
 
-/* ================= RESPONSIVE ================= */
-@media (max-width: 768px) {
+/* =========================
+   HEADINGS
+========================= */
+.footer h3 {
+  color: #ffffff;
+  font-size: 18px;
+  margin-bottom: 16px;
+  position: relative;
+}
+
+.footer h3::after {
+  content: "";
+  width: 42px;
+  height: 3px;
+  background: linear-gradient(90deg, #38bdf8, #22c55e);
+  display: block;
+  margin-top: 6px;
+  border-radius: 10px;
+}
+
+/* =========================
+   LINKS
+========================= */
+.footer ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer ul li {
+  margin-bottom: 10px;
+}
+
+.footer a {
+  color: #cbd5f5;
+  text-decoration: none;
+  font-size: 14px;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+}
+
+.footer a:hover,
+.footer a.active {
+  color: #38bdf8;
+  padding-left: 4px;
+}
+
+/* =========================
+   SOCIAL ICONS
+========================= */
+.footer-social {
+  display: flex;
+  gap: 18px;
+  margin-top: 20px;
+}
+
+.footer-social img {
+  width: 38px;
+  height: 38px;
+  padding: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #38bdf8, #22c55e);
+  animation: pulse 2.5s infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-social img:hover {
+  transform: scale(1.15) rotate(5deg);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.8);
+}
+
+/* =========================
+   PULSE ANIMATION
+========================= */
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 rgba(56, 189, 248, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 14px rgba(34, 197, 94, 0.7);
+  }
+  100% {
+    box-shadow: 0 0 0 rgba(56, 189, 248, 0.4);
+  }
+}
+
+/* =========================
+   FOOTER BOTTOM
+========================= */
+.footer-bottom {
+  margin-top: 50px;
+  padding: 15px;
+  text-align: center;
+  font-size: 13px;
+  background: #020617;
+  color: #e5e7eb;
+}
+
+/* =========================
+   RESPONSIVE DESIGN
+========================= */
+@media (max-width: 900px) {
   .footer-container {
-    flex-direction: column;
+    grid-template-columns: 1fr 1fr;
     text-align: center;
+  }
+
+  .footer h3::after {
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .footer-social {
     justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .footer-container {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-logo {
+    width: 130px;
+    margin: auto;
+    animation-duration: 0.7s;
+  }
+
+  .footer-left p {
+    font-size: 13px;
+  }
+
+  .footer-social img {
+    width: 34px;
+    height: 34px;
   }
 }

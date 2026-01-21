@@ -7,13 +7,13 @@
 
 /* ================= NAVBAR ================= */
 .navbar {
-  width: 100%;
   position: fixed;
   top: 0;
   left: 0;
+  width: 100%;
   z-index: 999;
   background: rgba(12, 8, 39, 0.95);
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 .navbar.sticky {
@@ -31,39 +31,38 @@
   justify-content: space-between;
 }
 
-/* ================= LOGO ================= */
+/* ================= LOGO WRAPPER ================= */
 .logo-wrap {
   display: inline-block;
   cursor: pointer;
-  transition: transform 0.3s ease, opacity 0.5s ease;
   opacity: 0;
-  /* start invisible for fade-in */
-  animation: fadeInLogo 1s forwards;
-  /* fade-in animation */
+  animation: fadeInDiagonal 1s ease-out forwards;
 }
 
-.logo-wrap:hover {
-  transform: scale(1.1);
-  /* subtle zoom on hover */
-}
-
-.logo {
-  height: 55px;
-  display: block;
-  transition: transform 0.3s ease;
-}
-
-/* ================= FADE-IN LOGO ANIMATION ================= */
-@keyframes fadeInLogo {
-  0% {
+/* Logo hover handled on image only */
+@keyframes fadeInDiagonal {
+  from {
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translate(-25px, -25px);
   }
-
-  100% {
+  to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translate(0, 0);
   }
+}
+
+/* ================= LOGO IMAGE ================= */
+.logo {
+  height: 90px;
+  width: auto;
+  max-width: 100%;
+  display: block;
+  object-fit: contain;
+  transition: transform 0.3s ease, height 0.3s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
 }
 
 /* ================= MENU ================= */
@@ -80,9 +79,9 @@
   font-size: 16px;
   font-weight: 600;
   color: #ffffff;
+  text-decoration: none;
   cursor: pointer;
   transition: color 0.3s ease;
-  text-decoration: none;
 }
 
 .nav-link:hover,
@@ -99,7 +98,7 @@
   border-radius: 25px;
   font-size: 15px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .nav-btn-item .btn:hover {
@@ -121,7 +120,7 @@
   transform: rotate(180deg);
 }
 
-/* ===== Desktop Dropdown ===== */
+/* Desktop dropdown */
 .dropdown-menu {
   position: absolute;
   top: 52px;
@@ -153,12 +152,12 @@
   font-weight: 500;
   color: #0f172a;
   display: block;
+  border-radius: 8px;
 }
 
 .dropdown-menu a:hover {
   background: #f1f5ff;
   color: #0d6efd;
-  border-radius: 8px;
 }
 
 /* ================= MOBILE ICON ================= */
@@ -169,10 +168,14 @@
   display: none;
 }
 
-/* ================= MOBILE VIEW ================= */
+/* ================= TABLET & MOBILE ================= */
 @media (max-width: 768px) {
   .menu-icon {
     display: block;
+  }
+
+  .logo {
+    height: 65px;
   }
 
   .nav-menu {
@@ -182,7 +185,6 @@
     width: 100%;
     background: #0f172a;
     flex-direction: column;
-    align-items: stretch;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.4s ease;
@@ -190,9 +192,7 @@
 
   .nav-menu.active {
     max-height: 100vh;
-    /* FULL HEIGHT */
     overflow-y: auto;
-    /* ENABLE SCROLL */
   }
 
   .nav-menu li {
@@ -204,10 +204,9 @@
   .nav-link,
   .dropdown-link {
     font-size: 17px;
-    color: #ffffff;
   }
 
-  /* ===== Mobile Dropdown ===== */
+  /* Mobile dropdown */
   .dropdown-menu {
     position: static;
     background: #020617;
@@ -222,13 +221,8 @@
     display: block;
   }
 
-  .dropdown-menu li {
-    padding: 12px 0;
-  }
-
   .dropdown-menu a {
     color: #cbd5f5;
-    font-size: 15px;
   }
 
   .dropdown-menu a:hover {
@@ -258,7 +252,6 @@
     opacity: 0;
     transform: translateY(-8px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);

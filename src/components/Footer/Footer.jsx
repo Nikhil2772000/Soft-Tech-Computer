@@ -1,84 +1,94 @@
 import React from "react";
 import "./Footer.css";
 import logo from "../../assets/logo.png";
-import whatpp from "../../assets/whatpp.avif";
+import whatsapp from "../../assets/whatpp.avif";
 import facebook from "../../assets/facebook.webp";
-
+import { NavLink } from "react-router-dom";
 
 const Footer = () => {
-    const phone = "918380863037";
-    const message = "Hello, I want to know about your courses.";
-    const whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  const phone = "918380863037"; // ✅ Add your WhatsApp number
+  const message = "Hello, I want to know about your courses.";
+  const whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
-    const handleLogoClick = () => {
-        window.location.href = "/";
-    };
+  // Function to refresh and go to Home page
+  const handleLogoClick = () => {
+    window.location.href = "/"; // Full page reload to home
+  };
 
-    return (
-        <footer className="footer">
-            <div className="footer-container">
+  return (
+    <footer className="footer">
+      <div className="footer-container">
+        {/* LEFT */}
+        <div className="footer-left">
+          {/* Logo click refreshes Home page */}
+          <img
+            src={logo}
+            alt="Soft Tech Computer Logo"
+            className="footer-logo"
+            style={{ cursor: "pointer" }}
+            onClick={handleLogoClick}
+          />
 
-                {/* Left Section: Logo & Info */}
-                <div className="footer-left">
-                    <img src={logo} alt="Soft-Tech Computers Logo" onClick={handleLogoClick} className="footer-logo" />
-                    <p>
-                        <strong>Soft Tech Computer Training Learning Center</strong><br />
-                        Learn modern technologies and boost your career with practical training.
-                    </p>
-                </div>
+          <p>
+            <strong>Soft Tech Computer Training Learning Center</strong>
+            <br />
+            Practical, industry-oriented training to build a successful IT career.
+          </p>
+        </div>
 
-                {/* Middle Section: Quick Links */}
-                <div className="footer-middle">
-                    <h3>Quick Links</h3>
-                    <ul>
-                        <li><a href="/">Home</a></li>
-                        <li><a href="/about">About</a></li>
-                        <li><a href="/services">Services</a></li>
-                        <li><a href="/contact">Contact Us</a></li>
-                    </ul>
-                </div>
+        {/* MIDDLE */}
+        <div className="footer-middle">
+          <h3>Quick Links</h3>
+          <ul>
+            <li>
+              <NavLink to="/" end style={{ cursor: "pointer" }}>
+                Home
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/about">About</NavLink>
+            </li>
+            <li>
+              <NavLink to="/services">Services</NavLink>
+            </li>
+            <li>
+              <NavLink to="/contact">Contact Us</NavLink>
+            </li>
+          </ul>
+        </div>
 
-                {/* Right Section: Legal & Social */}
-                <div className="footer-right">
-                    <h3>Legal Support</h3>
-                    <ul>
-                        <li><a href="/privacy-policy">Privacy Policy </a></li>
-                        <li><a href="/term-of-service">Terms of Service</a></li>
-                    </ul>
+        {/* RIGHT */}
+        <div className="footer-right">
+          <h3>Legal Support</h3>
+          <ul>
+            <li>
+              <NavLink to="/privacy-policy">Privacy Policy</NavLink>
+            </li>
+            <li>
+              <NavLink to="/terms-of-service">Terms of Service</NavLink>
+            </li>
+          </ul>
 
-                    <div className="footer-social">
+          <div className="footer-social">
+            <a href={whatsappURL} target="_blank" rel="noopener noreferrer">
+              <img src={whatsapp} alt="WhatsApp" />
+            </a>
+            <a
+              href="https://www.facebook.com/share/1AsZNB35rX/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <img src={facebook} alt="Facebook" />
+            </a>
+          </div>
+        </div>
+      </div>
 
-                        <a
-                            href={whatsappURL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="social-link"
-                            aria-label="Chat with us on WhatsApp"
-                        >
-                            <img src={whatpp} alt="WhatsApp" />
-                        </a>
-
-                        <a
-                            href="https://www.facebook.com/share/1AsZNB35rX/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="social-link"
-                            aria-label="Visit our Facebook page"
-                        >
-                            <img src={facebook} alt="Facebook" />
-                        </a>
-
-                    </div>
-                </div>
-
-            </div>
-
-            {/* Bottom Copyright */}
-            <div className="footer-bottom">
-                © 2026 Soft Tech Computer. All rights reserved.
-            </div>
-        </footer>
-    );
+      <div className="footer-bottom">
+        © 2026 <strong>Soft Tech Computer</strong>. All rights reserved.
+      </div>
+    </footer>
+  );
 };
 
 export default Footer;

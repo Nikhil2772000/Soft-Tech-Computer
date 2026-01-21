@@ -1,22 +1,23 @@
+/* ================= ABOUT SECTION ================= */
 .about-section {
-  padding: 80px 0;
+  padding: 90px 0;
   overflow: hidden;
-   background: #020617;
+  background: linear-gradient(135deg, #0f39df, #9de905);
 }
 
-/* Container */
+/* ================= CONTAINER ================= */
 .about-container {
   max-width: 1200px;
-  margin: auto;
+  margin: 0 auto;
   padding: 0 20px;
+
   display: flex;
   align-items: center;
-  gap: 40px;
+  gap: 50px;
 
-  /* animation initial */
   opacity: 0;
-  transform: translateY(50px);
-  transition: all 1s ease;
+  transform: translateY(60px);
+  transition: opacity 1s ease, transform 1s ease;
 }
 
 /* Show on scroll */
@@ -25,9 +26,9 @@
   transform: translateY(0);
 }
 
-/* ---------- Left Image ---------- */
+/* ================= LEFT IMAGE ================= */
 .about-image {
-  flex: 0.8; /* smaller image width */
+  flex: 0.9;
   display: flex;
   justify-content: center;
 }
@@ -35,11 +36,11 @@
 .about-image img {
   width: 85%;
   max-width: 420px;
-  border-radius: 14px;
+  border-radius: 16px;
+
   opacity: 0;
-  transform: translateX(-40px);
-  transition: all 1s ease;
-  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.4);
+  transform: translateX(-50px);
+  transition: opacity 1s ease, transform 1s ease;
 }
 
 /* Image animation */
@@ -48,17 +49,18 @@
   transform: translateX(0);
 }
 
+/* Hover effect */
 .about-image img:hover {
-  transform: scale(1.05);
+  transform: scale(1.06);
 }
 
-/* ---------- Right Content ---------- */
+/* ================= RIGHT CONTENT ================= */
 .about-content {
   flex: 1;
-  color: #f1390b;
+
   opacity: 0;
-  transform: translateX(40px);
-  transition: all 1s ease;
+  transform: translateX(50px);
+  transition: opacity 1s ease, transform 1s ease;
 }
 
 /* Content animation */
@@ -68,26 +70,38 @@
 }
 
 .about-content h4 {
-  color: aqua;
+  color: #0aa9ec;
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.2px;
   font-size: 14px;
   margin-bottom: 8px;
 }
 
 .about-content h2 {
-  font-size: 36px;
-  margin-bottom: 20px;
+  font-size: 38px;
+  margin-bottom: 18px;
+  color: hsl(0, 0%, 95%);
 }
 
 .about-content p {
   font-size: 16px;
-  line-height: 1.7;
-  color: #d1d5db;
-  margin-bottom: 15px;
+  line-height: 1.75;
+  color: #e0e1e2;
+  margin-bottom: 16px;
 }
 
-/* ---------- Tablet ---------- */
+/* ================= TABLET ================= */
+@media (max-width: 900px) {
+  .about-container {
+    gap: 35px;
+  }
+
+  .about-content h2 {
+    font-size: 32px;
+  }
+}
+
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
   .about-container {
     flex-direction: column;
@@ -96,19 +110,19 @@
   }
 
   .about-image img {
-    width: 75%;
-    max-width: 350px;
+    width: 80%;
+    max-width: 340px;
   }
 
   .about-content h2 {
-    font-size: 30px;
+    font-size: 28px;
   }
 }
 
-/* ---------- Mobile ---------- */
+/* ================= SMALL MOBILE ================= */
 @media (max-width: 480px) {
   .about-section {
-    padding: 60px 0;
+    padding: 65px 0;
   }
 
   .about-image img {

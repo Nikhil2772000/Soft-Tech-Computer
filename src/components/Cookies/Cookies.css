@@ -1,0 +1,109 @@
+/* ================= COOKIE BANNER ================= */
+.cookie-banner {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+}
+
+/* ================= CONTENT ================= */
+.cookie-content {
+  max-width: 900px;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  color: #e5e7eb;
+  padding: 22px 26px;
+  border-radius: 16px;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.35);
+  animation: slideUp 0.6s ease;
+}
+
+.cookie-content h3 {
+  margin-bottom: 10px;
+  color: #38bdf8;
+  font-size: 20px;
+}
+
+.cookie-content p {
+  font-size: 14.5px;
+  line-height: 1.6;
+  margin-bottom: 18px;
+}
+
+/* ================= BUTTONS ================= */
+.cookie-actions {
+  display: flex;
+  gap: 14px;
+}
+
+.btn {
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+/* ACCEPT */
+.btn.accept {
+  background: linear-gradient(135deg, #38bdf8, #22c55e);
+  color: #020617;
+}
+
+.btn.accept:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.8);
+}
+
+/* DECLINE */
+.btn.decline {
+  background: transparent;
+  color: #e5e7eb;
+  border: 1px solid #475569;
+}
+
+.btn.decline:hover {
+  background: #1e293b;
+}
+
+/* ================= ANIMATION ================= */
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .cookie-content {
+    padding: 20px;
+  }
+
+  .cookie-actions {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .cookie-content h3 {
+    font-size: 18px;
+  }
+
+  .cookie-content p {
+    font-size: 13.5px;
+  }
+}
