@@ -22,7 +22,7 @@
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  transition: background-image 1s ease-in-out;
+  transition: background-image 0.8s ease-in-out;
   z-index: -2;
 }
 
@@ -36,7 +36,7 @@
 
 /* ================= CONTENT ================= */
 .hero-content {
-  height: 100%;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -53,29 +53,55 @@
 
 /* ================= TITLE ================= */
 .hero-title {
-  font-size: 36px;
+  font-size: 38px;
   font-weight: 500;
   margin-bottom: 12px;
-  animation: fadeDown 1s ease;
+  animation: fadeDown 0.8s ease forwards;
 }
 
 /* ================= TYPING TEXT ================= */
 .typing-text {
+  display: inline-block;
+  max-width: 100%;
   font-size: 56px;
   font-weight: 800;
   white-space: nowrap;
   overflow: hidden;
   border-right: 4px solid #facc15;
-  padding-right: 8px;
-  animation: typing 4s steps(22, end) infinite, blink 0.8s infinite;
-  margin-bottom: 20px;
+  padding-right: 10px;
+  margin-bottom: 22px;
+  animation: typing 4s steps(24, end) infinite, blink 0.7s infinite;
 }
 
 /* ================= STROKE EFFECT ================= */
 .stroke-text {
-   color: transparent;                 /* Hide fill */
-  -webkit-text-stroke: 2px #37e60c;    /* ✅ WORKING */
-   text-stroke: 2px #37e60c;            /* Optional fallback */
+  color: transparent;
+  -webkit-text-stroke: 2px #f87e0c;
+  text-stroke: 2px #f15e08;
+}
+
+/* ================= CENTER CODE ================= */
+.center-code {
+  display: inline-block;
+  margin: 0 auto 26px;
+  padding: 10px 22px;
+
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+
+  color: #e5e7eb;
+  background: linear-gradient(135deg, #2563eb, #0ea5e9);
+  border-radius: 999px;
+
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
+  position: relative;
+  z-index: 2;
+}
+
+.center-code span {
+  color: #facc15;
+  font-weight: 700;
 }
 
 /* ================= PARAGRAPH ================= */
@@ -101,7 +127,7 @@
 @keyframes fadeDown {
   from {
     opacity: 0;
-    transform: translateY(-20px);
+    transform: translateY(-18px);
   }
   to {
     opacity: 1;
@@ -109,44 +135,68 @@
   }
 }
 
-/* ================= RESPONSIVE ================= */
-
-/* Tablets */
+/* ================= TABLET ================= */
 @media (max-width: 992px) {
+  .hero-text {
+    margin-top: 60px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+  }
+
   .typing-text {
     font-size: 42px;
+    border-right: 3px solid #facc15;
+  }
+
+  .center-code {
+    font-size: 16px;
+    padding: 8px 18px;
   }
 
   .hero-para {
     font-size: 16px;
   }
-
-  .hero-text {
-    margin-top: 60px;
-  }
 }
 
-/* Mobile */
+/* ================= MOBILE ================= */
 @media (max-width: 768px) {
+  .hero-text {
+    margin-top: 50px;
+  }
+
   .hero-title {
     font-size: 22px;
   }
 
   .typing-text {
     font-size: 26px;
-    border-right: 3px solid #facc15;
+    border-right: 2px solid #facc15;
   }
 
   .stroke-text {
     -webkit-text-stroke: 1.5px #0cf118;
   }
 
+  .center-code {
+    font-size: 14px;
+    padding: 7px 16px;
+  }
+
   .hero-para {
     font-size: 14px;
     padding: 0 10px;
   }
+}
 
-  .hero-text {
-    margin-top: 50px;
+/* ================= SMALL PHONES ================= */
+@media (max-width: 480px) {
+  .hero-title {
+    font-size: 20px;
+  }
+
+  .typing-text {
+    font-size: 22px;
   }
 }

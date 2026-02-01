@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./Hero.css";
-import banner1 from "../../assets/nav.webp";
-import banner2 from "../../assets/Soft.png";
-import slide from "../../assets/slide.webp";
+import banner1 from "../../assets/mscit.webp";
+import banner2 from "../../assets/about.png";
+import banner4 from "../../assets/web2.jpg";
 
-const images = [banner1, banner2, slide];
+const images = [banner1, banner2, banner4];
 
 const Hero = () => {
-  const [current, setCurrent] = useState(0);
+  const [current, setCurrent] = useState(0); // ✅ FIXED
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -19,7 +19,7 @@ const Hero = () => {
 
   return (
     <section className="hero">
-      {/* Background Slider */}
+      {/* Background */}
       <div
         className="hero-bg"
         style={{ backgroundImage: `url(${images[current]})` }}
@@ -33,15 +33,22 @@ const Hero = () => {
         <div className="hero-text">
           <h2 className="hero-title">Welcome To</h2>
 
+          {/* MAIN HEADING */}
           <h1 className="typing-text">
             <span className="stroke-text">Soft Tech Computer</span>
           </h1>
 
+          {/* ✅ CENTER CODE — NOW PERFECTLY BELOW HEADING */}
+          <div className="center-code">
+            Center Code : <span>32210149</span>
+          </div>
+
           <p className="hero-para">
-            <strong>Soft Tech Computer</strong> is a professional training
-            institute providing quality education in
-            <strong> Computer Courses, Software Development</strong> and
-            <strong> IT Skills</strong> to build a successful career.
+            <strong>Soft Tech Computer</strong> is a professional training institute
+            dedicated to providing quality education in
+            <strong> MS-CIT, Computer Courses</strong> and essential
+            <strong> IT skills</strong>, helping students build strong knowledge and
+            confidence for a successful career.
           </p>
         </div>
       </div>

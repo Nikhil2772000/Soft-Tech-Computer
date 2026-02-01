@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import "./About.css";
-import aboutImg from "../../assets/about.png"; // update path if needed
+import aboutImg from "../../assets/nav.webp"; // update path if needed
 
 const About = () => {
   const aboutRef = useRef(null);

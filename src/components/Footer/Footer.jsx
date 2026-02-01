@@ -1,14 +1,20 @@
 import React from "react";
 import "./Footer.css";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/logo.jfif";
 import whatsapp from "../../assets/whatpp.avif";
 import facebook from "../../assets/facebook.webp";
 import { NavLink } from "react-router-dom";
 
 const Footer = () => {
-  const phone = "918380863037"; // ✅ Add your WhatsApp number
-  const message = "Hello, I want to know about your courses.";
+  const phone = "918380863037"; // WhatsApp number with country code
+
+  const message =
+    "Hello, I want to know about your courses." 
+
   const whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+
+  // Example redirect
+  window.open(whatsappURL, "_blank");
 
   // Function to refresh and go to Home page
   const handleLogoClick = () => {
@@ -73,6 +79,7 @@ const Footer = () => {
             <a href={whatsappURL} target="_blank" rel="noopener noreferrer">
               <img src={whatsapp} alt="WhatsApp" />
             </a>
+
             <a
               href="https://www.facebook.com/share/1AsZNB35rX/"
               target="_blank"

@@ -1,13 +1,19 @@
-
 import React, { useState, useEffect, useRef } from "react";
 import "./Contact.css";
-import { FaEnvelope, FaPhoneAlt, FaMapMarkerAlt } from "react-icons/fa";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+
+import gmailIcon from "../../assets/gmail.avif";
+import phoneIcon from "../../assets/Phone 1.png";
+import mapIcon from "../../assets/googlemaps.png";
 
 const Contact = () => {
   const sectionRef = useRef(null);
   const navigate = useNavigate();
+
+  const [visible, setVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState({});
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -17,22 +23,18 @@ const Contact = () => {
     message: "",
   });
 
-  const [errors, setErrors] = useState({});
-  const [loading, setLoading] = useState(false);
-  const [visible, setVisible] = useState(false);
-
   /* ================= SCROLL ANIMATION ================= */
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setVisible(true),
-      { threshold: 0.2 }
+      { threshold: 0.25 }
     );
 
     if (sectionRef.current) observer.observe(sectionRef.current);
     return () => observer.disconnect();
   }, []);
 
-  /* ================= INPUT HANDLER ================= */
+  /* ================= INPUT ================= */
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -40,71 +42,61 @@ const Contact = () => {
   /* ================= VALIDATION ================= */
   const validate = () => {
     let err = {};
-    if (!formData.firstName) err.firstName = "Required";
-    if (!formData.lastName) err.lastName = "Required";
-    if (!formData.email) err.email = "Required";
-    if (!formData.mobile || formData.mobile.length !== 10)
-      err.mobile = "Enter valid mobile number";
-    if (!formData.message) err.message = "Required";
+    if (!formData.firstName) err.firstName = true;
+    if (!formData.lastName) err.lastName = true;
+    if (!formData.email) err.email = true;
+    if (formData.mobile.length !== 10) err.mobile = true;
+    if (!formData.message) err.message = true;
     return err;
   };
 
   /* ================= SUBMIT ================= */
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
+    const err = validate();
 
-  const err = validate();
-  if (Object.keys(err).length) {
-    setErrors(err);
-    toast.error("Please fill all required fields");
-    return;
-  }
-
-  setErrors({});
-  setLoading(true);
-
-  // 🔥 MAP React fields to API model
-  const payload = {
-    firstName: formData.firstName,
-    lastName: formData.lastName,
-    email: formData.email,
-    mobileNo: formData.mobile, // ✅ FIXED
-    message: formData.message
-  };
-
-  try {
-    const response = await fetch("https://localhost:7027/api/Contact", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(payload)
-    });
-
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error("API Error:", errorData);
-      throw new Error("Failed to submit");
+    if (Object.keys(err).length) {
+      setErrors(err);
+      toast.error("Please fill all required fields");
+      return;
     }
 
-    toast.success("Message sent successfully");
+    setErrors({});
+    setLoading(true);
 
-    setFormData({
-      firstName: "",
-      lastName: "",
-      email: "",
-      mobile: "",
-      message: ""
-    });
+    const payload = {
+      firstName: formData.firstName,
+      lastName: formData.lastName,
+      email: formData.email,
+      mobileNo: formData.mobile,
+      message: formData.message,
+    };
 
-    navigate("/thanku");
-  } catch (error) {
-    console.error(error);
-    toast.error("Something went wrong. Please try again.");
-  } finally {
-    setLoading(false);
-  }
-};
+    try {
+      const res = await fetch("https://localhost:7027/api/Contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!res.ok) throw new Error("Failed");
+
+      toast.success("Message Sent Successfully");
+      setFormData({
+        firstName: "",
+        lastName: "",
+        email: "",
+        mobile: "",
+        message: "",
+      });
+
+      navigate("/thanku");
+    } catch {
+      toast.error("ERROR");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <section
@@ -115,25 +107,36 @@ const Contact = () => {
         {/* LEFT INFO */}
         <div className="contact-info">
           <div className="info-item">
-            <FaEnvelope />
+            <img src={gmailIcon} alt="Email" />
             <a href="mailto:softtechmotala@gmail.com">
               softtechmotala@gmail.com
             </a>
           </div>
 
           <div className="info-item">
-            <FaPhoneAlt />
-            <a href="tel:+918380863037">+91 8380863037</a>
+            <img src={phoneIcon} alt="Phone" />
+            <a href="tel:+918380863037">+91 838086 3037</a>
           </div>
 
           <div className="info-item">
-            <FaMapMarkerAlt />
+            <img src={mapIcon} alt="Location" />
             <span>
-              Buldhana Rd, near Suyog Hospital, Phata, Motala, Maharashtra
-              443103
+              Buldhana Rd, near Suyog Hospital,<br />
+              Motala, Maharashtra 443103
+            </span>
+          </div>
+
+          <div className="info-item">
+            <span className="time-icon">⏰</span>
+            <span>
+              <strong>Office Time:</strong><br />
+              Monday to Saturday<br />
+              8:00 AM – 5:00 PM
             </span>
           </div>
         </div>
+
+
 
         {/* RIGHT FORM */}
         <div className="contact-form">
@@ -155,28 +158,27 @@ const Contact = () => {
               />
             </div>
 
-            <div className="form-group">
-              <input
-                type="email"
-                name="email"
-                placeholder="Email"
-                value={formData.email}
-                onChange={handleChange}
-                className={errors.email ? "error" : ""}
-              />
-              {errors.email && <span className="error-msg">{errors.email}</span>}
-            </div>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              className={errors.email ? "error" : ""}
+            />
 
             <input
               type="tel"
               name="mobile"
               placeholder="Mobile Number"
-              value={formData.mobile}
-              onChange={(e) => {
-                const value = e.target.value.replace(/\D/g, "");
-                setFormData({ ...formData, mobile: value });
-              }}
               maxLength="10"
+              value={formData.mobile}
+              onChange={(e) =>
+                setFormData({
+                  ...formData,
+                  mobile: e.target.value.replace(/\D/g, ""),
+                })
+              }
               className={errors.mobile ? "error" : ""}
             />
 
@@ -188,7 +190,7 @@ const Contact = () => {
               className={errors.message ? "error" : ""}
             />
 
-            <button type="submit" className="submit-btn" disabled={loading}>
+            <button type="submit" disabled={loading}>
               {loading ? "Sending..." : "Send Message"}
             </button>
           </form>
