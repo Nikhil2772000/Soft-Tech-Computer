@@ -3,8 +3,8 @@ import "./Services.css";
 
 import mscitImg from "../../assets/certificate.webp";
 import idCardImg from "../../assets/Card.png";
-import booksImg from "../../assets/Books.webp";
-import padImg from "../../assets/Books.webp"; // replace with actual pad image if available
+import booksImg from "../../assets/books.webp"
+import padImg from "../../assets/books.webp"; // replace with actual pad image if available
 
 const servicesData = [
     {
