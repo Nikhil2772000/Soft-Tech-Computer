@@ -304,13 +304,35 @@ button:disabled,
 
 /* ================= ICON / IMAGE ================= */
 .info-item img,
-.time-icon {
+.office-icon {
   width: 36px;
   height: 36px;
   object-fit: contain;
+  font-size: 18px;
   flex-shrink: 0;
-  transition: transform 0.35s ease;
+
+  /* Center icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  /* Colors */
+  color: #0d6efd;           /* Primary blue for font icons */
+  background-color: #e7f1ff; /* Light blue background */
+  border-radius: 50%;
+
+  /* Smooth animation */
+  transition: transform 0.35s ease, background-color 0.35s ease, color 0.35s ease;
 }
+
+/* Hover effect */
+.info-item:hover img,
+.info-item:hover .office-icon {
+  transform: scale(1.15);
+  background-color: #0d6efd;
+  color: #ffffff;
+}
+
 
 /* Desktop hover animation */
 @media (hover: hover) {
@@ -320,10 +342,11 @@ button:disabled,
   }
 
   .info-item:hover img,
-  .info-item:hover .time-icon {
-    transform: scale(1.2);
+  .info-item:hover .office-icon {
+    transform: scale(1.15) rotate(3deg);
   }
 }
+
 
 /* ================= TEXT ================= */
 .info-item a,
@@ -464,7 +487,7 @@ textarea {
   }
 
   .info-item img,
-  .time-icon {
+  .office-icon {
     width: 30px;
     height: 30px;
   }

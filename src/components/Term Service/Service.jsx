@@ -81,7 +81,7 @@ const Termofservice = () => {
             For any questions regarding these Terms, contact us at:
           </p>
           <p className="terms-contact">
-            <strong>Email:</strong> support@softtechcomputer.com <br />
+            <strong>Email:</strong> softtechmotala@gmail.com <br />
             <strong>Phone:</strong> +91 8380863037
           </p>
         </div>

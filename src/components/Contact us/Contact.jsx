@@ -127,11 +127,11 @@ const Contact = () => {
           </div>
 
           <div className="info-item">
-            <span className="time-icon">⏰</span>
+           <span className="office-icon">🏢</span>
             <span>
               <strong>Office Time:</strong><br />
               Monday to Saturday<br />
-              8:00 AM – 5:00 PM
+              7:00 AM – 5:00 PM
             </span>
           </div>
         </div>

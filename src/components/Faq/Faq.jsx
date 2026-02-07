@@ -24,7 +24,7 @@ const faqData = [
   },
   {
     question: "6. What are the operating hours?",
-    answer: "Monday to Saturday: 9:00 am - 9:00 pm, Sunday: Closed."
+    answer: "Monday to Saturday: 7:00 am - 5:00 pm, Sunday: Closed."
   },
 ];
 
