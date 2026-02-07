@@ -3,7 +3,7 @@ import "./Contact.css";
 import { toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
-import gmailIcon from "../../assets/gmail.avif";
+import gmailIcon from "../../assets/gmail.webp";
 import phoneIcon from "../../assets/Phone 1.png";
 import mapIcon from "../../assets/googlemaps.png";
 

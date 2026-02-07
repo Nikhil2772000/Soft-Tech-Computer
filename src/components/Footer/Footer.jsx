@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-import logo from "../../assets/logo.jfif";
+import logo from "../../assets/logo.jpg";
 import whatsapp from "../../assets/whatpp.avif";
 import facebook from "../../assets/facebook.webp";
 import { NavLink } from "react-router-dom";
@@ -9,12 +9,11 @@ const Footer = () => {
   const phone = "918380863037"; // WhatsApp number with country code
 
   const message =
-    "Hello, I want to know about your courses." 
+    "Hello, I want to know about your courses."
 
   const whatsappURL = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
 
-  // Example redirect
-  window.open(whatsappURL, "_blank");
+
 
   // Function to refresh and go to Home page
   const handleLogoClick = () => {
@@ -36,10 +35,13 @@ const Footer = () => {
           />
 
           <p>
-            <strong>Soft Tech Computer Training Learning Center</strong>
             <br />
-            Practical, industry-oriented training to build a successful IT career.
+            Practical, industry-oriented computer training to build a successful IT career.
+            <br />
+            Authorized MS-CIT learning center offering basic to advanced computer education,
+            skill development, and career-focused courses.
           </p>
+
         </div>
 
         {/* MIDDLE */}
