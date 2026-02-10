@@ -29,6 +29,8 @@
   text-align: center;
   box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
   animation: slideUp 0.9s ease forwards;
+  position: relative;
+  z-index: 2;
 }
 
 /* Card entrance animation */
@@ -52,10 +54,10 @@
 }
 
 @keyframes pop {
-  0% {
-    transform: scale(0.8);
+  from {
+    transform: scale(0.85);
   }
-  100% {
+  to {
     transform: scale(1);
   }
 }
@@ -89,8 +91,8 @@
   font-weight: 600;
   border-radius: 30px;
   text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
   animation: gradientMove 5s ease infinite;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 @keyframes gradientMove {
@@ -110,7 +112,36 @@
   box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
 }
 
-/* ================= RESPONSIVE ================= */
+/* ================= LIST ================= */
+.thanku-actions {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+/* ================= BRAND COLOR ================= */
+.brand-color {
+  font-weight: 700;
+  animation: colorShift 4s infinite linear;
+}
+
+@keyframes colorShift {
+  0%   { color: #e70909; }
+  25%  { color: #e49e08; }
+  50%  { color: #08c8f3; }
+  75%  { color: #65ee0a; }
+  100% { color: #8a05f0; }
+}
+
+/* ================= FIREWORK CANVAS ================= */
+.firework-canvas {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ================= TABLET ================= */
 @media (max-width: 768px) {
   .thanku-card {
     padding: 35px 25px;
@@ -125,13 +156,28 @@
   }
 }
 
+/* ================= MOBILE ================= */
 @media (max-width: 480px) {
+  .thanku-card {
+    padding: 28px 20px;
+    border-radius: 14px;
+  }
+
   .thanku-title {
     font-size: 26px;
+  }
+
+  .thanku-text,
+  .thanku-sub {
+    font-size: 14px;
   }
 
   .thanku-btn {
     width: 100%;
     padding: 14px 0;
+  }
+
+  .brand-color {
+    font-size: 15px;
   }
 }
