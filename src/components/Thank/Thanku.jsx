@@ -8,17 +8,20 @@ const Thanku = () => {
 
   const colors = ["#ff6b6b", "#48dbfb", "#1dd1a1", "#c77dff", "#ff9ff3"];
 
-  /* Background color change */
+  /* ================= Background color animation ================= */
   useEffect(() => {
     const interval = setInterval(() => {
       setColorIndex((prev) => (prev + 1) % colors.length);
     }, 1500);
-    return () => clearInterval(interval);
-  }, []);
 
-  /* 🎆 Diwali Tree Animation (LEFT + RIGHT | Slow → Fast in 20 min) */
+    return () => clearInterval(interval);
+  }, [colors.length]);
+
+  /* ================= 🎆 Firework Animation ================= */
   useEffect(() => {
     const canvas = canvasRef.current;
+    if (!canvas) return;
+
     const ctx = canvas.getContext("2d");
 
     const resize = () => {
@@ -50,9 +53,7 @@ const Thanku = () => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const elapsed = Date.now() - startTime;
-      const intensity = Math.min(elapsed / MAX_TIME, 1); // 0 → 1
-
-      // Spawn rate increases very slowly
+      const intensity = Math.min(elapsed / MAX_TIME, 1);
       const spawnRate = Math.floor(1 + intensity * 12);
 
       for (let i = 0; i < spawnRate; i++) {
@@ -60,10 +61,11 @@ const Thanku = () => {
         createParticle("right");
       }
 
-      particles.forEach((p, i) => {
+      for (let i = particles.length - 1; i >= 0; i--) {
+        const p = particles[i];
         p.x += p.vx;
         p.y += p.vy;
-        p.vy += 0.04; // gravity
+        p.vy += 0.04;
         p.life--;
 
         ctx.beginPath();
@@ -72,7 +74,7 @@ const Thanku = () => {
         ctx.fill();
 
         if (p.life <= 0) particles.splice(i, 1);
-      });
+      }
 
       requestAnimationFrame(animate);
     };
@@ -80,7 +82,7 @@ const Thanku = () => {
     animate();
 
     return () => window.removeEventListener("resize", resize);
-  }, []);
+  }, [colors]);
 
   return (
     <section
@@ -105,6 +107,7 @@ const Thanku = () => {
 
         <ul className="thanku-actions">
           <li>
+            {/* ✅ Link (simple navigation) */}
             <Link to="/" className="thanku-btn">
               Go Back Home
             </Link>

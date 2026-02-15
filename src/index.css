@@ -23,12 +23,12 @@ section {
 /* ================= BODY ================= */
 body {
   font-family: "Outfit", sans-serif;
-  line-height: 1.6;
+  line-height: 1.7;
   min-height: 100vh;
   padding-top: 80px;
 
   color: #1e293b; /* slate-800 */
-  background-color: #f8fafc;
+  background: linear-gradient(180deg, #f8fafc, #eef2ff);
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -41,11 +41,11 @@ a {
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: all 0.25s ease;
 }
 
 a:hover {
-  opacity: 0.85;
+  opacity: 0.9;
   transform: translateY(-1px);
 }
 
@@ -53,7 +53,7 @@ a:hover {
 .container {
   width: 100%;
   max-width: 1400px;
-  margin: 0 auto;
+  margin: auto;
   padding: 0 10%;
   transition: padding 0.3s ease;
 }
@@ -69,7 +69,7 @@ a:hover {
 
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
-  border-radius: 6px;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
@@ -81,12 +81,60 @@ a:hover {
   width: 80px;
   height: auto;
   object-fit: contain;
-  border-radius: 8px;
+  border-radius: 10px;
   transition: transform 0.3s ease, width 0.3s ease;
 }
 
 .site-logo:hover {
-  transform: scale(1.05);
+  transform: scale(1.08);
+}
+
+/* ================= COMMON UI HELPERS ================= */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 26px;
+  border-radius: 999px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #6366f1, #3b82f6);
+  color: #fff;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(99, 102, 241, 0.4);
+}
+
+/* ================= DESKTOP (≥1200px) ================= */
+@media (min-width: 1200px) {
+  body {
+    padding-top: 85px;
+  }
+
+  .container {
+    padding: 0 12%;
+  }
+
+  section {
+    scroll-margin-top: 95px;
+  }
+
+  .site-logo {
+    width: 90px;
+  }
 }
 
 /* ================= TABLET (≤1024px) ================= */
@@ -125,6 +173,15 @@ a:hover {
   .site-logo {
     width: 55px;
   }
+
+  .card {
+    padding: 18px;
+  }
+
+  .btn {
+    padding: 10px 22px;
+    font-size: 15px;
+  }
 }
 
 /* ================= SMALL MOBILE (≤480px) ================= */
@@ -143,5 +200,10 @@ a:hover {
 
   .site-logo {
     width: 45px;
+  }
+
+  .btn {
+    width: 100%;
+    text-align: center;
   }
 }
