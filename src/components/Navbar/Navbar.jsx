@@ -14,6 +14,18 @@ const Navbar = () => {
 
   const closeMenu = () => setMenuOpen(false);
 
+  const scrollToSection = (id) => {
+    closeMenu(); // optional: closes mobile menu
+
+    const section = document.getElementById(id);
+    if (section) {
+      section.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  };
+
   return (
     <nav className={`navbar ${sticky ? "sticky" : ""}`}>
       <div className="nav-container">
@@ -58,11 +70,7 @@ const Navbar = () => {
             <a href="#testimonials" className="nav-link">Testimonials</a>
           </li>
 
-          <li className="nav-btn-item" onClick={closeMenu}>
-            <a href="/contact">
-              <button className="btn">Contact Us</button>
-            </a>
-          </li>
+          <li className="nav-btn-item" onClick={() => scrollToSection("contact")}> <button className="btn">Contact Us</button> </li>
         </ul>
       </div>
     </nav>
