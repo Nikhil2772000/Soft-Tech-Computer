@@ -1,202 +1,185 @@
-/* ================= BASE RESET ================= */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-/* ================= HERO SECTION ================= */
+/* ================= HERO BASE ================= */
 .hero {
-  position: relative;
-  width: 100%;
   min-height: 100vh;
   min-height: 100svh;
-  min-height: 100dvh;
-  overflow: hidden;
-}
-
-/* ================= BACKGROUND ================= */
-.hero-bg {
-  position: absolute;
-  inset: 0;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  transition: background-image 0.8s ease-in-out;
-  z-index: -2;
-}
-
-/* ================= OVERLAY ================= */
-.hero-overlay {
-  position: absolute;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.6);
-  z-index: -1;
-}
-
-/* ================= CONTENT ================= */
-.hero-content {
-  min-height: 100vh;
+  background: #030712;
   display: flex;
   align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 0 20px;
-}
-
-/* ================= TEXT ================= */
-.hero-text {
-  max-width: 900px;
-  color: #ffffff;
-  margin-top: 80px;
-}
-
-/* ================= TITLE ================= */
-.hero-title {
-  font-size: 38px;
-  font-weight: 500;
-  margin-bottom: 12px;
-  animation: fadeDown 0.8s ease forwards;
-}
-
-/* ================= TYPING TEXT ================= */
-.typing-text {
-  display: inline-block;
-  max-width: 100%;
-  font-size: 56px;
-  font-weight: 800;
-  white-space: nowrap;
+  padding: 80px 5%;
   overflow: hidden;
-  border-right: 4px solid #facc15;
-  padding-right: 10px;
-  margin-bottom: 22px;
-  animation: typing 4s steps(24, end) infinite, blink 0.7s infinite;
 }
 
-/* ================= STROKE EFFECT ================= */
-.stroke-text {
-  color: transparent;
-  -webkit-text-stroke: 2px #f87e0c;
-  text-stroke: 2px #f15e08;
+.hero-container {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 50px;
+  max-width: 1400px;
+  width: 100%;
+  margin: auto;
+  align-items: center;
 }
 
-/* ================= CENTER CODE ================= */
-.center-code {
+/* ================= LEFT CONTENT ================= */
+.hero-subtitle {
+  color: #facc15;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+}
+
+/* Typing Container & Text */
+.typing-container {
   display: inline-block;
-  margin: 0 auto 26px;
-  padding: 10px 22px;
+}
 
-  font-size: 18px;
-  font-weight: 600;
-  letter-spacing: 1px;
+.typing-text {
+  font-size: clamp(1.8rem, 4vw, 3.5rem); /* Responsive font size */
+  font-weight: 900;
+  color: white;
+  overflow: hidden; 
+  white-space: nowrap; 
+  border-right: 4px solid #3b82f6;
+  width: 0;
+  margin: 0;
+  /* Adjust steps(18) to match the number of characters in your text */
+  animation: 
+    typing 4s steps(18) infinite alternate,
+    blink 0.8s infinite;
+}
 
+.center-code {
+  margin: 25px 0;
+  display: inline-block;
+  padding: 10px 20px;
+  background: rgba(59, 130, 246, 0.1);
+  border: 1px solid rgba(59, 130, 246, 0.3);
+  border-radius: 8px;
   color: #e5e7eb;
-  background: linear-gradient(135deg, #2563eb, #0ea5e9);
-  border-radius: 999px;
-
-  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.35);
-  position: relative;
-  z-index: 2;
+  font-family: monospace;
 }
 
 .center-code span {
   color: #facc15;
-  font-weight: 700;
+  font-weight: 800;
 }
 
-/* ================= PARAGRAPH ================= */
-.hero-para {
-  font-size: 18px;
+.hero-description {
+  color: #9ca3af;
+  max-width: 550px;
   line-height: 1.7;
-  color: #f1f1f1;
-  max-width: 800px;
-  margin: auto;
+  margin-bottom: 35px;
+  font-size: 1.05rem;
+}
+
+.hero-cta {
+  padding: 14px 32px;
+  background: #2563eb;
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.hero-cta:hover {
+  background: #1d4ed8;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2);
+}
+
+/* ================= RIGHT IMAGE ================= */
+.hero-right {
+  position: relative;
+  height: 450px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.blue-rotate-bg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #2563eb, #0ea5e9);
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Organic shape */
+  animation: rotateBg 15s linear infinite;
+  filter: blur(40px);
+  opacity: 0.4;
+}
+
+.image-frame {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  z-index: 2;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  transition: opacity 1.5s ease-in-out;
+}
+
+.slide.active {
+  opacity: 1;
 }
 
 /* ================= ANIMATIONS ================= */
 @keyframes typing {
   0% { width: 0; }
-  60% { width: 100%; }
-  100% { width: 0; }
+  50%, 90% { width: 100%; } /* Holds the full text visible for a moment */
+  100% { width: 0; } /* Deletes it (optional, creates a loop) */
 }
 
 @keyframes blink {
   50% { border-color: transparent; }
 }
 
-@keyframes fadeDown {
-  from {
-    opacity: 0;
-    transform: translateY(-18px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+@keyframes rotateBg {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
-/* ================= TABLET ================= */
+/* ================= MOBILE ADAPTATION ================= */
 @media (max-width: 992px) {
-  .hero-text {
-    margin-top: 60px;
+  .hero {
+    padding: 60px 20px;
   }
 
-  .hero-title {
-    font-size: 28px;
+  .hero-container {
+    grid-template-columns: 1fr;
+    text-align: center;
+    gap: 40px;
   }
 
-  .typing-text {
-    font-size: 42px;
-    border-right: 3px solid #facc15;
+  .hero-left {
+    order: 2; /* Text moves below image on mobile */
   }
 
-  .center-code {
-    font-size: 16px;
-    padding: 8px 18px;
-  }
-
-  .hero-para {
-    font-size: 16px;
-  }
-}
-
-/* ================= MOBILE ================= */
-@media (max-width: 768px) {
-  .hero-text {
-    margin-top: 50px;
-  }
-
-  .hero-title {
-    font-size: 22px;
+  .hero-right {
+    order: 1;
+    height: 300px;
+    max-width: 400px;
+    margin: 0 auto;
   }
 
   .typing-text {
-    font-size: 26px;
-    border-right: 2px solid #facc15;
+    margin: 0 auto;
+    border-right-width: 3px;
   }
 
-  .stroke-text {
-    -webkit-text-stroke: 1.5px #0cf118;
-  }
-
-  .center-code {
-    font-size: 14px;
-    padding: 7px 16px;
-  }
-
-  .hero-para {
-    font-size: 14px;
-    padding: 0 10px;
-  }
-}
-
-/* ================= SMALL PHONES ================= */
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 20px;
-  }
-
-  .typing-text {
-    font-size: 22px;
+  .hero-description {
+    margin-left: auto;
+    margin-right: auto;
   }
 }
