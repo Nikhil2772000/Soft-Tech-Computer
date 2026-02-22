@@ -15,35 +15,34 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
-    }, 6000);
+    }, 5000); // 5 seconds per slide
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section className="hero">
+      {/* Dynamic Background Particles (Optional Overlay) */}
+      <div className="hero-overlay"></div>
+      
       <div className="hero-container">
-        {/* LEFT CONTENT */}
         <div className="hero-left">
+          <span className="hero-badge">ISO Certified Institute</span>
           <h2 className="hero-subtitle">Welcome To</h2>
-
           <div className="typing-container">
             <h1 className="typing-text">Soft Tech Computer</h1>
           </div>
-
           <div className="center-code">
             Center Code : <span>32210149</span>
           </div>
-
           <p className="hero-description">
-            <strong>Soft Tech Computer</strong> is a professional training institute
-            providing quality education in <strong>MS-CIT</strong> and essential
-            <strong> IT skills</strong> to build successful careers.
+            Empowering students with <strong>MS-CIT</strong> and cutting-edge 
+            <strong> IT skills</strong>. Join us to transform your digital future 
+            with professional guidance.
           </p>
         </div>
 
-        {/* RIGHT IMAGE */}
         <div className="hero-right">
-          <div className="blue-rotate-bg"></div>
+          <div className="blob-shape"></div>
           <div className="image-frame">
             {images.map((img, index) => (
               <div
@@ -53,6 +52,8 @@ const Hero = () => {
               />
             ))}
           </div>
+          {/* Decorative Elements */}
+          <div className="decor-circle"></div>
         </div>
       </div>
     </section>
