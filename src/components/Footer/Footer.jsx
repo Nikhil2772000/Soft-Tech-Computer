@@ -1,6 +1,6 @@
 import React from "react";
 import "./Footer.css";
-import logo from "../../assets/logo.jpg";
+import logo from "../../assets/logo.png";
 import whatsapp from "../../assets/whatpp.avif";
 import facebook from "../../assets/facebook.webp";
 import { NavLink } from "react-router-dom";

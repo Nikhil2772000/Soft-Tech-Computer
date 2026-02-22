@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./Navbar.css";
-import logo from "../../assets/logo.jpg";
+import logo from "../../assets/logo.png";
 
 const Navbar = () => {
   const [sticky, setSticky] = useState(false);
