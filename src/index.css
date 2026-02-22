@@ -10,7 +10,17 @@
   box-sizing: border-box;
 }
 
-/* ================= HTML / SCROLL ================= */
+/* ================= ROOT VARIABLES ================= */
+:root {
+  --primary: #6366f1;
+  --secondary: #3b82f6;
+  --dark: #1e293b;
+  --light-bg: #f8fafc;
+  --radius: 16px;
+  --transition: all 0.3s ease;
+}
+
+/* ================= HTML ================= */
 html {
   scroll-behavior: smooth;
 }
@@ -27,12 +37,10 @@ body {
   min-height: 100vh;
   padding-top: 80px;
 
-  color: #1e293b; /* slate-800 */
+  color: var(--dark);
   background: linear-gradient(180deg, #f8fafc, #eef2ff);
 
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
   transition: padding 0.3s ease;
 }
 
@@ -41,12 +49,12 @@ a {
   text-decoration: none;
   color: inherit;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: var(--transition);
 }
 
 a:hover {
   opacity: 0.9;
-  transform: translateY(-1px);
+  transform: translateY(-2px);
 }
 
 /* ================= CONTAINER ================= */
@@ -63,10 +71,6 @@ a:hover {
   width: 8px;
 }
 
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-
 ::-webkit-scrollbar-thumb {
   background: #cbd5e1;
   border-radius: 10px;
@@ -79,43 +83,74 @@ a:hover {
 /* ================= LOGO ================= */
 .site-logo {
   width: 80px;
-  height: auto;
   object-fit: contain;
   border-radius: 10px;
-  transition: transform 0.3s ease, width 0.3s ease;
+  transition: transform 0.4s ease, width 0.3s ease;
 }
 
 .site-logo:hover {
-  transform: scale(1.08);
+  transform: scale(1.1) rotate(-1deg);
 }
 
-/* ================= COMMON UI HELPERS ================= */
+/* ================= CARD ================= */
 .card {
   background: #ffffff;
-  border-radius: 16px;
+  border-radius: var(--radius);
   padding: 24px;
   box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
 .card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.12);
+  transform: translateY(-8px);
+  box-shadow: 0 25px 45px rgba(15, 23, 42, 0.15);
 }
 
+/* ================= BUTTON ================= */
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   padding: 12px 26px;
   border-radius: 999px;
   font-weight: 600;
-  background: linear-gradient(135deg, #6366f1, #3b82f6);
   color: #fff;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 24px rgba(99, 102, 241, 0.4);
+  transform: translateY(-3px);
+  box-shadow: 0 14px 28px rgba(99, 102, 241, 0.4);
+}
+
+/* ================= FADE + SLIDE ANIMATIONS ================= */
+.fade-in {
+  animation: fadeIn 0.9s ease forwards;
+}
+
+.slide-up {
+  animation: slideUp 0.8s ease forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ================= DESKTOP (≥1200px) ================= */
@@ -147,10 +182,6 @@ a:hover {
     padding: 0 8%;
   }
 
-  section {
-    scroll-margin-top: 85px;
-  }
-
   .site-logo {
     width: 65px;
   }
@@ -166,14 +197,6 @@ a:hover {
     padding: 0 6%;
   }
 
-  section {
-    scroll-margin-top: 75px;
-  }
-
-  .site-logo {
-    width: 55px;
-  }
-
   .card {
     padding: 18px;
   }
@@ -181,6 +204,10 @@ a:hover {
   .btn {
     padding: 10px 22px;
     font-size: 15px;
+  }
+
+  .site-logo {
+    width: 55px;
   }
 }
 
@@ -194,16 +221,11 @@ a:hover {
     padding: 0 5%;
   }
 
-  section {
-    scroll-margin-top: 70px;
+  .btn {
+    width: 100%;
   }
 
   .site-logo {
     width: 45px;
-  }
-
-  .btn {
-    width: 100%;
-    text-align: center;
   }
 }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Hero.css";
 
+// Assuming these paths are correct in your project
 import banner1 from "../../assets/mscit.webp";
 import banner2 from "../../assets/about us.jpg";
 import banner3 from "../../assets/computer logo.jpg";
@@ -15,13 +16,13 @@ const Hero = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % images.length);
-    }, 5000); // 5 seconds per slide
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
   return (
     <section className="hero">
-      {/* Dynamic Background Particles (Optional Overlay) */}
+      {/* Background Hexagon Pattern Overlay */}
       <div className="hero-overlay"></div>
       
       <div className="hero-container">
@@ -42,7 +43,12 @@ const Hero = () => {
         </div>
 
         <div className="hero-right">
+          {/* SLOW ROTATION: Blue Glow */}
           <div className="blob-shape"></div>
+          
+          {/* FAST ROTATION: Benzene / Hex Frame */}
+          <div className="decor-circle"></div>
+          
           <div className="image-frame">
             {images.map((img, index) => (
               <div
@@ -52,8 +58,6 @@ const Hero = () => {
               />
             ))}
           </div>
-          {/* Decorative Elements */}
-          <div className="decor-circle"></div>
         </div>
       </div>
     </section>
