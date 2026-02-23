@@ -1,183 +1,185 @@
-/* ================= THANK YOU SECTION ================= */
+/* ===== Layout ===== */
 .thanku-section {
   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 20px;
-  transition: background-color 1.2s ease-in-out;
-  animation: bgPulse 6s infinite alternate;
+  overflow: hidden;
+  position: relative;
+
+  /* animated gradient background */
+  background: linear-gradient(
+    120deg,
+    #ff6b6b,
+    #48dbfb,
+    #1dd1a1,
+    #c77dff,
+    #ff9ff3
+  );
+  background-size: 400% 400%;
+  animation: bgMove 12s ease infinite;
 }
 
-/* Background soft pulse */
-@keyframes bgPulse {
-  from {
-    filter: brightness(1);
-  }
-  to {
-    filter: brightness(1.1);
-  }
+/* background light motion */
+@keyframes bgMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
-/* ================= CARD ================= */
+/* ===== Card ===== */
 .thanku-card {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.95);
   max-width: 520px;
   width: 100%;
-  padding: 45px 40px;
-  border-radius: 18px;
+  padding: 50px 35px;
+  border-radius: 30px;
   text-align: center;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.2);
-  animation: slideUp 0.9s ease forwards;
-  position: relative;
-  z-index: 2;
+  z-index: 5;
+
+  animation: cardPop 0.9s ease;
+  box-shadow:
+    0 30px 70px rgba(0, 0, 0, 0.18),
+    0 0 40px rgba(37, 99, 235, 0.15);
 }
 
-/* Card entrance animation */
-@keyframes slideUp {
-  from {
+/* card entrance */
+@keyframes cardPop {
+  0% {
     opacity: 0;
-    transform: translateY(40px) scale(0.95);
+    transform: scale(0.9) translateY(40px);
   }
-  to {
+  100% {
     opacity: 1;
-    transform: translateY(0) scale(1);
+    transform: scale(1) translateY(0);
   }
 }
 
-/* ================= TEXT ================= */
+/* ===== Check Icon ===== */
+.check-container {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 25px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1dd1a1, #10b981);
+  color: white;
+  font-size: 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  animation: pulseGlow 2s infinite;
+  box-shadow: 0 0 25px rgba(16, 185, 129, 0.7);
+}
+
+/* glowing pulse */
+@keyframes pulseGlow {
+  0% {
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(16, 185, 129, 0.9);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
+  }
+}
+
+/* ===== Text ===== */
 .thanku-title {
-  font-size: 36px;
-  margin-bottom: 15px;
+  font-size: 40px;
+  font-weight: 800;
   color: #0f172a;
-  animation: pop 0.8s ease;
-}
-
-@keyframes pop {
-  from {
-    transform: scale(0.85);
-  }
-  to {
-    transform: scale(1);
-  }
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .thanku-text {
-  font-size: 16px;
-  color: #334155;
-  line-height: 1.6;
-  margin-bottom: 12px;
+  margin: 20px auto;
+  font-size: 18px;
+  color: #475569;
+  line-height: 1.7;
 }
 
 .thanku-sub {
-  font-size: 15px;
-  color: #475569;
-  margin-bottom: 28px;
+  margin-top: 15px;
+  font-size: 16px;
 }
 
-/* ================= BUTTON ================= */
-.thanku-btn {
-  display: inline-block;
-  padding: 14px 34px;
-  background: linear-gradient(
-    135deg,
-    #ff6b6b,
-    #feca57,
-    #48dbfb,
-    #1dd1a1
-  );
-  background-size: 300% 300%;
-  color: #0f172a;
+/* glowing brand */
+.brand-glow {
+  color: #2563eb;
+  font-size: 20px;
+  text-shadow: 0 0 12px rgba(37, 99, 235, 0.6);
+  animation: glowText 2.5s ease-in-out infinite;
+}
+
+@keyframes glowText {
+  0% { text-shadow: 0 0 8px rgba(37, 99, 235, 0.5); }
+  50% { text-shadow: 0 0 18px rgba(37, 99, 235, 0.9); }
+  100% { text-shadow: 0 0 8px rgba(37, 99, 235, 0.5); }
+}
+
+/* ===== Buttons ===== */
+.button-wrapper {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.thanku-btn,
+.speak-btn {
+  padding: 16px;
+  border-radius: 50px;
   font-weight: 600;
-  border-radius: 30px;
-  text-decoration: none;
-  animation: gradientMove 5s ease infinite;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border: none;
+  cursor: pointer;
+  transition: all 0.35s ease;
 }
 
-@keyframes gradientMove {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
+/* main button */
+.thanku-btn {
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  color: #fff;
+  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.4);
 }
 
 .thanku-btn:hover {
-  transform: scale(1.08);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
+  transform: translateY(-4px) scale(1.03);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.6);
 }
 
-/* ================= LIST ================= */
-.thanku-actions {
-  list-style: none;
-  padding: 0;
-  margin-top: 20px;
+/* speak button */
+.speak-btn {
+  background: #e2e8f0;
+  color: #0f172a;
 }
 
-/* ================= BRAND COLOR ================= */
-.brand-color {
-  font-weight: 700;
-  animation: colorShift 4s infinite linear;
+.speak-btn:hover {
+  background: #cbd5f5;
+  transform: scale(1.03);
 }
 
-@keyframes colorShift {
-  0%   { color: #e70909; }
-  25%  { color: #e49e08; }
-  50%  { color: #08c8f3; }
-  75%  { color: #65ee0a; }
-  100% { color: #8a05f0; }
-}
-
-/* ================= FIREWORK CANVAS ================= */
+/* ===== Fireworks Canvas ===== */
 .firework-canvas {
-  position: fixed;
+  position: absolute;
   inset: 0;
   pointer-events: none;
   z-index: 1;
 }
 
-/* ================= TABLET ================= */
-@media (max-width: 768px) {
+/* ===== Mobile ===== */
+@media (max-width: 600px) {
   .thanku-card {
     padding: 35px 25px;
   }
 
   .thanku-title {
-    font-size: 30px;
+    font-size: 32px;
   }
 
   .thanku-text {
-    font-size: 15px;
-  }
-}
-
-/* ================= MOBILE ================= */
-@media (max-width: 480px) {
-  .thanku-card {
-    padding: 28px 20px;
-    border-radius: 14px;
-  }
-
-  .thanku-title {
-    font-size: 26px;
-  }
-
-  .thanku-text,
-  .thanku-sub {
-    font-size: 14px;
-  }
-
-  .thanku-btn {
-    width: 100%;
-    padding: 14px 0;
-  }
-
-  .brand-color {
-    font-size: 15px;
+    font-size: 16px;
   }
 }

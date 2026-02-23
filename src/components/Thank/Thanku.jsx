@@ -1,28 +1,47 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Thanku.css";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Thanku = () => {
-  const [colorIndex, setColorIndex] = useState(0);
   const canvasRef = useRef(null);
+  const navigate = useNavigate();
+  const [colorIndex, setColorIndex] = useState(0);
 
   const colors = ["#ff6b6b", "#48dbfb", "#1dd1a1", "#c77dff", "#ff9ff3"];
 
-  /* ================= Background color animation ================= */
+  /* ================= 🔊 Voice Greeting ================= */
+  const speakGreeting = () => {
+    window.speechSynthesis.cancel();
+    const msg = new SpeechSynthesisUtterance(
+      "Thank You! Our team will contact you."
+    );
+    msg.rate = 1;
+    msg.pitch = 1.1;
+    window.speechSynthesis.speak(msg);
+  };
+
+  /* ================= ⬅ Back to Home ================= */
+  const goHome = () => {
+    window.speechSynthesis.cancel(); // stop voice
+    navigate("/"); // redirect to home
+  };
+
   useEffect(() => {
-    const interval = setInterval(() => {
+    speakGreeting();
+
+    const timer = setInterval(() => {
       setColorIndex((prev) => (prev + 1) % colors.length);
-    }, 1500);
+    }, 3500);
 
-    return () => clearInterval(interval);
-  }, [colors.length]);
+    return () => clearInterval(timer);
+  }, []);
 
-  /* ================= 🎆 Firework Animation ================= */
+  /* ================= 🎆 Fireworks ================= */
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
-
     const ctx = canvas.getContext("2d");
+    let animationId;
+    let particles = [];
 
     const resize = () => {
       canvas.width = window.innerWidth;
@@ -31,88 +50,89 @@ const Thanku = () => {
     resize();
     window.addEventListener("resize", resize);
 
-    const particles = [];
-    const startTime = Date.now();
-    const MAX_TIME = 20 * 60 * 1000; // 20 minutes
+    class Particle {
+      constructor(x, y, color) {
+        this.x = x;
+        this.y = y;
+        this.color = color;
+        this.size = Math.random() * 3 + 1;
+        this.vx = (Math.random() - 0.5) * 6;
+        this.vy = (Math.random() - 0.5) * 6;
+        this.life = 1;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        this.life -= 0.02;
+      }
+      draw() {
+        ctx.globalAlpha = this.life;
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = this.color;
+        ctx.fill();
+      }
+    }
 
-    const createParticle = (side) => {
-      const baseX = side === "left" ? 40 : canvas.width - 40;
-
-      particles.push({
-        x: baseX,
-        y: canvas.height,
-        vx: (Math.random() - 0.5) * 1.5,
-        vy: -Math.random() * 5 - 3,
-        size: Math.random() * 2 + 1,
-        life: 120,
-        color: colors[Math.floor(Math.random() * colors.length)],
-      });
+    const explode = () => {
+      const x = Math.random() * canvas.width;
+      const y = Math.random() * canvas.height * 0.5;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      for (let i = 0; i < 25; i++) {
+        particles.push(new Particle(x, y, color));
+      }
     };
 
     const animate = () => {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(0,0,0,0.15)";
+      ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      const elapsed = Date.now() - startTime;
-      const intensity = Math.min(elapsed / MAX_TIME, 1);
-      const spawnRate = Math.floor(1 + intensity * 12);
+      if (Math.random() < 0.04) explode();
 
-      for (let i = 0; i < spawnRate; i++) {
-        createParticle("left");
-        createParticle("right");
-      }
+      particles = particles.filter((p) => p.life > 0);
+      particles.forEach((p) => {
+        p.update();
+        p.draw();
+      });
 
-      for (let i = particles.length - 1; i >= 0; i--) {
-        const p = particles[i];
-        p.x += p.vx;
-        p.y += p.vy;
-        p.vy += 0.04;
-        p.life--;
-
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        ctx.fillStyle = p.color;
-        ctx.fill();
-
-        if (p.life <= 0) particles.splice(i, 1);
-      }
-
-      requestAnimationFrame(animate);
+      animationId = requestAnimationFrame(animate);
     };
 
     animate();
-
-    return () => window.removeEventListener("resize", resize);
-  }, [colors]);
+    return () => {
+      cancelAnimationFrame(animationId);
+      window.removeEventListener("resize", resize);
+    };
+  }, []);
 
   return (
     <section
       className="thanku-section"
       style={{ backgroundColor: colors[colorIndex] }}
     >
-      {/* 🎆 Firework Canvas */}
-      <canvas ref={canvasRef} className="firework-canvas"></canvas>
+      <canvas ref={canvasRef} className="firework-canvas" />
 
       <div className="thanku-card">
-        <h1 className="thanku-title">Thank You! 🎉</h1>
+        <div className="check-container">✓</div>
+
+        <h1 className="thanku-title">Success 🎉</h1>
 
         <p className="thanku-text">
-          Your message has been successfully sent.
-          Our team will get in touch with you very soon.
+          Your message was sent successfully.
+          <br />
+          Our team will contact you shortly.
         </p>
 
         <p className="thanku-sub">
-          We appreciate your interest in{" "}
-          <strong className="brand-color">Soft Tech Computer</strong>.
+          Proudly served by <br />
+          <strong className="brand-glow">Soft Tech Computer</strong>
         </p>
 
-        <ul className="thanku-actions">
-          <li>
-            {/* ✅ Link (simple navigation) */}
-            <Link to="/" className="thanku-btn">
-              Go Back Home
-            </Link>
-          </li>
-        </ul>
+        <div className="button-wrapper">
+          <button className="thanku-btn" onClick={goHome}>
+            ← Back to Home
+          </button>
+        </div>
       </div>
     </section>
   );
