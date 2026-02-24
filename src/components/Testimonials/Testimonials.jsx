@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./Testimonials.css";
 
 import user1 from "../../assets/user-1.png";
@@ -15,7 +15,7 @@ const testimonialsData = [
     rating: 5,
     image: user1,
     message:
-      "Soft Tech Computer provides excellent training. The teachers are very supportive and friendly."
+      "Soft Tech Computer provides excellent training. The teachers are very supportive and friendly.",
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const testimonialsData = [
     rating: 4,
     image: user2,
     message:
-      "Good learning environment with practical knowledge. Highly recommended institute."
+      "Good learning environment with practical knowledge. Highly recommended institute.",
   },
   {
     id: 3,
@@ -33,7 +33,7 @@ const testimonialsData = [
     rating: 5,
     image: user3,
     message:
-      "Best institute in the area. I gained confidence and real skills for my career."
+      "Best institute in the area. I gained confidence and real skills for my career.",
   },
   {
     id: 4,
@@ -42,7 +42,7 @@ const testimonialsData = [
     rating: 5,
     image: user4,
     message:
-      "Practical teaching approach helped me understand concepts easily. Great experience!"
+      "Practical teaching approach helped me understand concepts easily. Great experience!",
   },
   {
     id: 5,
@@ -51,73 +51,80 @@ const testimonialsData = [
     rating: 4,
     image: user5,
     message:
-      "Friendly environment and updated syllabus. I feel job-ready after completing the course."
-  }
+      "Friendly environment and updated syllabus. I feel job-ready after completing the course.",
+  },
 ];
 
 const Testimonials = () => {
   const [index, setIndex] = useState(0);
-  const sectionRef = useRef(null);
-
-  /* Auto Slide */
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setIndex((prev) =>
-        prev === testimonialsData.length - 1 ? 0 : prev + 1
-      );
-    }, 4000);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  /* Scroll Animation */
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-        }
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) observer.observe(sectionRef.current);
-  }, []);
-
-  const prevSlide = () => {
-    setIndex(index === 0 ? testimonialsData.length - 1 : index - 1);
-  };
+  const [animate, setAnimate] = useState(true);
+  const intervalRef = useRef(null);
 
   const nextSlide = () => {
-    setIndex(index === testimonialsData.length - 1 ? 0 : index + 1);
+    setAnimate(false);
+    setTimeout(() => {
+      setIndex((prev) => (prev + 1) % testimonialsData.length);
+      setAnimate(true);
+    }, 300);
   };
+
+  const prevSlide = () => {
+    setAnimate(false);
+    setTimeout(() => {
+      setIndex((prev) =>
+        prev === 0 ? testimonialsData.length - 1 : prev - 1
+      );
+      setAnimate(true);
+    }, 300);
+  };
+
+  useEffect(() => {
+    intervalRef.current = setInterval(nextSlide, 6000);
+    return () => clearInterval(intervalRef.current);
+  }, []);
 
   const { name, course, rating, image, message } =
     testimonialsData[index];
 
   return (
-    <section
-      className="testimonials-section"
-      id="testimonials"
-      ref={sectionRef}
-    >
+    <section className="testimonials-section">
+      <div className="testi-container">
+        <header className="testi-header">
+          <span className="tag">Success Stories</span>
+          <h2>Student Reviews</h2>
+        </header>
 
-      <div className="testimonial-card">
-        <img src={image} alt={name} className="user-img" />
+        <div className={`testimonial-card ${animate ? "fade-in" : "fade-out"}`}>
+          <span className="quote-icon">“</span>
 
-        <p className="message">“{message}”</p>
+          <p className="message">{message}</p>
 
-        <div className="rating">
-          {"★".repeat(rating)}
-          {"☆".repeat(5 - rating)}
-        </div>
+          <div className="user-info">
+            <img src={image} alt={name} />
+            <div>
+              <h3>{name}</h3>
+              <span>{course} Course</span>
+              <div className="rating">
+                {"★".repeat(rating)}
+                {"☆".repeat(5 - rating)}
+              </div>
+            </div>
+          </div>
 
-        <h3>{name}</h3>
-        <span>{course}</span>
+          <div className="nav-controls">
+            <button onClick={prevSlide}>❮</button>
 
-        <div className="controls">
-          <button onClick={prevSlide}>❮</button>
-          <button onClick={nextSlide}>❯</button>
+            <div className="dots">
+              {testimonialsData.map((_, i) => (
+                <span
+                  key={i}
+                  className={`dot ${i === index ? "active" : ""}`}
+                />
+              ))}
+            </div>
+
+            <button onClick={nextSlide}>❯</button>
+          </div>
         </div>
       </div>
     </section>

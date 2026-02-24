@@ -1,105 +1,109 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import "./Services.css";
 
+// Import your assets
 import mscitImg from "../../assets/certificate.webp";
 import idCardImg from "../../assets/Card.png";
 import booksImg from "../../assets/books.webp";
-import padImg from "../../assets/books.webp"; // replace with actual pad image if available
+import padImg from "../../assets/books.webp"; 
 
 const servicesData = [
-    {
-        img: mscitImg,
-        title: "MS-CIT Certificates",
-        desc: "Government-recognized MS-CIT certification with complete guidance."
-    },
-    {
-        img: idCardImg,
-        title: "Student ID Card",
-        desc: "Official student ID cards for exams and verification."
-    },
-    {
-        img: booksImg,
-        title: "Study Books",
-        desc: "Updated syllabus-based study material for students."
-    },
-    {
-        img: padImg,
-        title: "Study Pad",
-        desc: "Pads are provided to students for daily practice."
-    }
+  { img: mscitImg, title: "MS-CIT Certificates", desc: "Government-recognized MS-CIT certification with complete guidance." },
+  { img: idCardImg, title: "Student ID Card", desc: "Official student ID cards for exams and verification." },
+  { img: booksImg, title: "Study Books", desc: "Updated syllabus-based study material for students." },
+  { img: padImg, title: "Study Pad", desc: "Pads are provided to students for daily practice." }
 ];
 
 const Services = () => {
-    const [selectedImage, setSelectedImage] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
-    // Scroll animation
-    useEffect(() => {
-        const cards = document.querySelectorAll(".service-card");
+  // Animation Variants
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.2 }
+    }
+  };
 
-        const observer = new IntersectionObserver(
-            entries => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("show");
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            { threshold: 0.25 }
-        );
+  const cardVariants = {
+    hidden: { y: 30, opacity: 0 },
+    visible: { y: 0, opacity: 1, transition: { duration: 0.6, ease: "easeOut" } }
+  };
 
-        cards.forEach(card => observer.observe(card));
-        return () => observer.disconnect();
-    }, []);
+  return (
+    <section className="services-section">
+      <div className="container">
+        <header className="services-header">
+          <motion.h2 
+            initial={{ opacity: 0, y: -20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            Our Benefits
+          </motion.h2>
+          <motion.p 
+            className="section-subtitle"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3 }}
+          >
+            <strong>Soft Tech Computer</strong> is a trusted learning center dedicated to 
+            providing quality computer education. We offer <strong>government-recognized certifications</strong> 
+            and modern learning tools to help you succeed in the digital world.
+          </motion.p>
+        </header>
 
-    return (
-        <section className="services-section">
-            <div className="container">
-                <p className="section-subtitle">
-                    <strong>Soft Tech Computer</strong> is a trusted learning and training center
-                    dedicated to providing quality computer education and professional skill
-                    development. We offer
-                    <strong> government-recognized MS-CIT certificates</strong>,
-                    <strong> official student ID cards</strong>,
-                    <strong> updated study books</strong>, and
-                    <strong> study pads</strong> to ensure a complete and structured learning
-                    experience. Our institute focuses on
-                    <strong> practical training</strong>,
-                    <strong> experienced faculty guidance</strong>, and
-                    <strong> student-friendly facilities</strong>, helping learners build strong
-                    technical knowledge, confidence, and career-ready skills for success in the
-                    modern digital world.
-                </p>
+        <motion.div 
+          className="services-grid"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+        >
+          {servicesData.map((item, index) => (
+            <motion.div 
+              className="service-card" 
+              key={index}
+              variants={cardVariants}
+              whileHover={{ y: -10 }}
+            >
+              <div className="image-wrapper" onClick={() => setSelectedImage(item.img)}>
+                <img src={item.img} alt={item.title} />
+                <div className="overlay"><span>View Image</span></div>
+              </div>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
 
-
-                <div className="services-grid">
-                    {servicesData.map((item, index) => (
-                        <div className="service-card" key={index}>
-                            <div className="image-wrapper">
-                                <img
-                                    src={item.img}
-                                    alt={item.title}
-                                    onClick={() => setSelectedImage(item.img)}
-                                />
-                            </div>
-                            <h3>{item.title}</h3>
-                            <p>{item.desc}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-
-            {/* IMAGE MODAL */}
-            {selectedImage && (
-                <div className="image-modal">
-                    <span className="close-btn" onClick={() => setSelectedImage(null)}>
-                        &times;
-                    </span>
-                    <img src={selectedImage} alt="Preview" className="modal-image" />
-                </div>
-            )}
-        </section>
-    );
+      {/* MODAL WITH ANIMATION */}
+      <AnimatePresence>
+        {selectedImage && (
+          <motion.div 
+            className="image-modal"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setSelectedImage(null)}
+          >
+            <span className="close-btn">&times;</span>
+            <motion.img 
+              src={selectedImage} 
+              alt="Preview" 
+              initial={{ scale: 0.8 }}
+              animate={{ scale: 1 }}
+              exit={{ scale: 0.8 }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
+  );
 };
 
 export default Services;
