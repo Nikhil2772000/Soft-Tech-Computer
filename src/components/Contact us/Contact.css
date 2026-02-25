@@ -1,10 +1,10 @@
-/* ================= SECTION ================= */
+/* ================= GLOBAL SECTION ================= */
 .contact-section {
-  padding: 90px 20px;
+  padding: 80px 20px;
   background: linear-gradient(135deg, #0b5ed7, #0d6efd);
   opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.8s ease;
+  transform: translateY(30px);
+  transition: all 0.8s ease-out;
 }
 
 .contact-section.show {
@@ -12,65 +12,66 @@
   transform: translateY(0);
 }
 
-/* ================= CONTAINER ================= */
+/* ================= LAYOUT CONTAINER ================= */
 .contact-container {
-  max-width: 1200px;
+  max-width: 1100px;
   margin: auto;
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
+  grid-template-columns: 1fr 1.2fr; /* Form is slightly wider */
+  gap: 30px;
+  align-items: start;
 }
 
-/* ================= LEFT INFO ================= */
+/* ================= LEFT INFO CARD ================= */
 .contact-info {
   background: #0f172a;
   color: #ffffff;
-  padding: 40px;
-  border-radius: 18px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+  padding: 35px;
+  border-radius: 20px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
 }
 
 .info-item {
   display: flex;
   align-items: center;
-  gap: 16px;
-  padding: 18px 0;
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.2);
+  gap: 15px;
+  padding: 15px;
+  margin-bottom: 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  transition: 0.3s;
 }
 
-.info-item:last-child {
-  border-bottom: none;
+.info-item:hover {
+  transform: translateX(8px);
+  background: rgba(56, 189, 248, 0.1);
 }
 
-.info-item img {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-  transition: transform 0.3s ease;
+.info-item img, .office-icon {
+  width: 40px;
+  height: 40px;
+  background: #e7f1ff;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.info-item:hover img {
-  transform: scale(1.15);
-}
-
-.info-item a,
-.info-item span {
-  font-size: 16px;
-  color: #ffffff;
+.info-item a, .info-item span {
+  color: #e5e7eb;
   text-decoration: none;
-  line-height: 1.4;
+  font-size: 15px;
 }
 
-.info-item a:hover {
-  color: #38bdf8;
-}
+.info-item strong { color: #38bdf8; }
 
-/* ================= FORM ================= */
+/* ================= RIGHT FORM CARD ================= */
 .contact-form {
   background: #ffffff;
   padding: 40px;
-  border-radius: 18px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
 .form-row {
@@ -78,421 +79,194 @@
   gap: 15px;
 }
 
-input,
-textarea {
+input, textarea {
   width: 100%;
-  padding: 14px 16px;
-  margin-bottom: 14px;
-  border-radius: 10px;
+  padding: 14px;
+  margin-bottom: 15px;
   border: 1px solid #d1d5db;
+  border-radius: 10px;
   font-size: 15px;
-  transition: border 0.3s ease, box-shadow 0.3s ease;
+  transition: 0.3s;
 }
 
-input:focus,
-textarea:focus {
+input:focus, textarea:focus {
   outline: none;
   border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
 }
 
-textarea {
-  min-height: 120px;
-  resize: none;
+/* ================= SPECIAL MOBILE INPUT (+91) ================= */
+.mobile-input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  overflow: hidden;
+  transition: 0.3s;
 }
 
-/* ERROR */
-.error {
-  border-color: #ef4444;
+.mobile-input-container:focus-within {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
+.country-prefix {
+  display: flex;
+  align-items: center;
+  background: #f3f4f6;
+  padding: 0 12px;
+  border-right: 1px solid #d1d5db;
+  height: 48px; /* Match height with input */
+}
+
+.india-flag { font-size: 18px; margin-right: 5px; }
+.code { font-weight: 600; color: #374151; font-size: 14px; }
+
+.mobile-input-container input {
+  border: none !important;
+  margin-bottom: 0 !important;
+  box-shadow: none !important;
+}
+
+/* ERROR STATE */
+.error, .mobile-input-container.error {
+  border-color: #ef4444 !important;
 }
 
 /* ================= BUTTON ================= */
-button,
-.submit-btn {
+.submit-btn, button[type="submit"] {
   width: 100%;
-  padding: 14px;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  color: #ffffff;
+  padding: 15px;
+  background: #1e40af;
+  color: white;
   border: none;
-  border-radius: 12px;
-  font-size: 16px;
+  border-radius: 10px;
+  font-weight: 600;
   cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit-btn:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+}
+
+/* ================= MAP ================= */
+.map-container {
+  margin-top: 50px;
+}
+
+.map-container iframe {
+  width: 100%;
+  height: 400px;
+  border-radius: 20px;
+  filter: grayscale(0.2);
+}
+
+/* ================= RESPONSIVE (MOBILE) ================= */
+@media (max-width: 850px) {
+  .contact-container {
+    grid-template-columns: 1fr; /* Stacked */
+    gap: 20px;
+  }
+
+  .form-row {
+    flex-direction: column; /* First/Last name stacked */
+    gap: 0;
+  }
+
+  .contact-section {
+    padding: 40px 15px;
+  }
+
+  .contact-info, .contact-form {
+    padding: 25px;
+  }
+
+  .info-item {
+    padding: 12px;
+  }
+}
+
+/* ================= MOBILE INPUT CONTAINER ================= */
+.mobile-input-container {
+  display: flex;
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  height: 50px; /* Fixed height for better alignment */
   transition: all 0.3s ease;
 }
 
-button:hover,
-.submit-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35);
-}
-
-button:disabled,
-.submit-btn:disabled {
-  background: #94a3b8;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-/* ================= MAP ================= */
-.map-container {
-  margin-top: 60px;
-}
-
-.map-container iframe {
-  width: 100%;
-  height: 380px;
-  border: none;
-  border-radius: 18px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-}
-
-/* ================= TABLET ================= */
-@media (max-width: 900px) {
-  .contact-container {
-    grid-template-columns: 1fr;
-  }
-
-  .form-row {
-    flex-direction: column;
-  }
-}
-
-/* ================= MOBILE ================= */
-@media (max-width: 600px) {
-  .contact-section {
-    padding: 70px 15px;
-  }
-
-  .contact-info,
-  .contact-form {
-    padding: 25px;
-    border-radius: 14px;
-  }
-
-  .info-item img {
-    width: 32px;
-    height: 32px;
-  }
-
-  .info-item a,
-  .info-item span {
-    font-size: 15px;
-  }
-
-  .map-container iframe {
-    height: 300px;
-  }
-}
-
-/* ================= OFFICE TIME ITEM ================= */
-.info-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 14px;
-  padding: 14px 16px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #020617, #0f172a);
-  color: #e5e7eb;
-  font-size: 15px;
-  line-height: 1.6;
-  animation: phatkaIn 0.6s ease-out;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-/* Hover phatka effect */
-.info-item:hover {
-  transform: scale(1.05) rotate(-0.5deg);
-  box-shadow: 0 14px 30px rgba(56, 189, 248, 0.25);
-}
-
-/* ================= TIME ICON ================= */
-.time-icon {
-  font-size: 26px;
-  animation: pulse 1.6s infinite ease-in-out;
-}
-
-/* ================= TEXT ================= */
-.info-item strong {
-  color: #38bdf8;
-}
-
-/* ================= ANIMATIONS ================= */
-@keyframes phatkaIn {
-  0% {
-    opacity: 0;
-    transform: scale(0.6) rotate(-6deg);
-  }
-  70% {
-    transform: scale(1.08) rotate(2deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0);
-  }
-}
-
-@keyframes pulse {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.25);
-  }
-}
-
-/* ================= MOBILE OPTIMIZATION ================= */
-@media (max-width: 600px) {
-  .info-item {
-    font-size: 14px;
-    padding: 12px 14px;
-    gap: 12px;
-  }
-
-  .time-icon {
-    font-size: 22px;
-  }
-}
-
-/* ================= SECTION ================= */
-.contact-section {
-  padding: 90px 20px;
-  background: linear-gradient(135deg, #0b5ed7, #0d6efd);
-  opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.contact-section.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ================= CONTAINER ================= */
-.contact-container {
-  max-width: 1200px;
-  margin: auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-}
-
-/* ================= LEFT INFO ================= */
-.contact-info {
-  background: #0f172a;
-  color: #ffffff;
-  padding: 40px;
-  border-radius: 18px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
-}
-
-/* ================= INFO ITEM ================= */
-.info-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-  padding: 16px;
-  margin-bottom: 14px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, #020617, #0f172a);
-  animation: fadeUp 0.6s ease forwards;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.info-item:last-child {
-  margin-bottom: 0;
-}
-
-/* ================= ICON / IMAGE ================= */
-.info-item img,
-.office-icon {
-  width: 36px;
-  height: 36px;
-  object-fit: contain;
-  font-size: 18px;
-  flex-shrink: 0;
-
-  /* Center icon */
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  /* Colors */
-  color: #0d6efd;           /* Primary blue for font icons */
-  background-color: #e7f1ff; /* Light blue background */
-  border-radius: 50%;
-
-  /* Smooth animation */
-  transition: transform 0.35s ease, background-color 0.35s ease, color 0.35s ease;
-}
-
-/* Hover effect */
-.info-item:hover img,
-.info-item:hover .office-icon {
-  transform: scale(1.15);
-  background-color: #0d6efd;
-  color: #ffffff;
-}
-
-
-/* Desktop hover animation */
-@media (hover: hover) {
-  .info-item:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 14px 30px rgba(56, 189, 248, 0.25);
-  }
-
-  .info-item:hover img,
-  .info-item:hover .office-icon {
-    transform: scale(1.15) rotate(3deg);
-  }
-}
-
-
-/* ================= TEXT ================= */
-.info-item a,
-.info-item span {
-  font-size: 15px;
-  color: #e5e7eb;
-  line-height: 1.6;
-  text-decoration: none;
-}
-
-.info-item a:hover {
-  color: #38bdf8;
-}
-
-.info-item strong {
-  color: #38bdf8;
-}
-
-/* ================= FORM ================= */
-.contact-form {
-  background: #ffffff;
-  padding: 40px;
-  border-radius: 18px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
-}
-
-.form-row {
-  display: flex;
-  gap: 15px;
-}
-
-input,
-textarea {
-  width: 100%;
-  padding: 14px 16px;
-  margin-bottom: 14px;
-  border-radius: 10px;
-  border: 1px solid #d1d5db;
-  font-size: 15px;
-  transition: border 0.3s ease, box-shadow 0.3s ease;
-}
-
-input:focus,
-textarea:focus {
-  outline: none;
+/* Border color change on focus */
+.mobile-input-container:focus-within {
   border-color: #2563eb;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
 }
 
-textarea {
-  min-height: 120px;
-  resize: none;
+/* Flag & Code Area */
+.country-prefix {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  padding: 0 12px;
+  border-right: 1px solid #d1d5db;
+  height: 100%;
+  user-select: none;
 }
 
-/* ERROR */
-.error {
+/* Indian Flag Image Styling */
+.india-flag-img {
+  width: 24px;   /* Small and neat */
+  height: auto;
+  border-radius: 2px;
+  object-fit: contain;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1); /* Subtle depth */
+}
+
+.code {
+  font-weight: 700;
+  font-size: 15px;
+  color: #334155;
+}
+
+/* The actual input field */
+.mobile-field {
+  border: none !important;
+  margin-bottom: 0 !important;
+  padding: 0 15px !important;
+  width: 100%;
+  height: 100%;
+  font-size: 16px;
+  outline: none;
+  background: transparent;
+}
+
+/* Error State */
+.mobile-input-container.error-border {
   border-color: #ef4444;
 }
 
-/* ================= BUTTON ================= */
-.submit-btn {
-  width: 100%;
-  padding: 14px;
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-  color: #ffffff;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-@media (hover: hover) {
-  .submit-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 25px rgba(37, 99, 235, 0.35);
-  }
-}
-
-.submit-btn:disabled {
-  background: #94a3b8;
-  cursor: not-allowed;
-  box-shadow: none;
-}
-
-/* ================= MAP ================= */
-.map-container {
-  margin-top: 60px;
-}
-
-.map-container iframe {
-  width: 100%;
-  height: 380px;
-  border-radius: 18px;
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
-  border: none;
-}
-
-/* ================= ANIMATION ================= */
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ================= TABLET ================= */
-@media (max-width: 900px) {
-  .contact-container {
-    grid-template-columns: 1fr;
-  }
-
-  .form-row {
-    flex-direction: column;
-  }
-}
-
-/* ================= MOBILE ================= */
+/* ================= RESPONSIVE (MOBILE) ================= */
 @media (max-width: 600px) {
-  .contact-section {
-    padding: 70px 15px;
+  .mobile-input-container {
+    height: 48px; /* Slightly smaller on mobile */
   }
 
-  .contact-info,
-  .contact-form {
-    padding: 25px;
-    border-radius: 14px;
+  .country-prefix {
+    padding: 0 8px;
   }
 
-  .info-item {
-    padding: 14px;
-    gap: 12px;
+  .india-flag-img {
+    width: 20px;
+  }
+
+  .code {
     font-size: 14px;
-  }
-
-  .info-item img,
-  .office-icon {
-    width: 30px;
-    height: 30px;
-  }
-
-  .map-container iframe {
-    height: 300px;
   }
 }

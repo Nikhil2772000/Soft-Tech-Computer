@@ -121,13 +121,13 @@ const Contact = () => {
           <div className="info-item">
             <img src={mapIcon} alt="Location" />
             <span>
-              Buldhana Rd, near Suyog Hospital,<br />
+              Near Suyog Hospital, Buldhana Rd<br />
               Motala, Maharashtra 443103
             </span>
           </div>
 
           <div className="info-item">
-           <span className="office-icon">🏢</span>
+            <span className="office-icon">🏢</span>
             <span>
               <strong>Office Time:</strong><br />
               Monday to Saturday<br />
@@ -166,21 +166,31 @@ const Contact = () => {
               onChange={handleChange}
               className={errors.email ? "error" : ""}
             />
-
-            <input
-              type="tel"
-              name="mobile"
-              placeholder="Mobile Number"
-              maxLength="10"
-              value={formData.mobile}
-              onChange={(e) =>
-                setFormData({
-                  ...formData,
-                  mobile: e.target.value.replace(/\D/g, ""),
-                })
-              }
-              className={errors.mobile ? "error" : ""}
-            />
+            {/* MOBILE INPUT WITH INDIA FLAG IMAGE & CODE */}
+            <div className={`mobile-input-container ${errors.mobile ? "error-border" : ""}`}>
+              <div className="country-prefix">
+                <img
+                  src="https://flagcdn.com/w40/in.png"
+                  alt="India Flag"
+                  className="india-flag-img"
+                />
+                <span className="code">+91</span>
+              </div>
+              <input
+                type="tel"
+                name="mobile"
+                placeholder="Mobile Number"
+                maxLength="10"
+                value={formData.mobile}
+                onChange={(e) =>
+                  setFormData({
+                    ...formData,
+                    mobile: e.target.value.replace(/\D/g, ""),
+                  })
+                }
+                className="mobile-field"
+              />
+            </div>
 
             <textarea
               name="message"
