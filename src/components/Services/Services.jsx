@@ -41,7 +41,7 @@ const Services = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            Our Benefits
+            MS-CIT Training That Builds Confidence
           </motion.h2>
           <motion.p 
             className="section-subtitle"

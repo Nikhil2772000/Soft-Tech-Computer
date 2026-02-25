@@ -25,7 +25,7 @@ const Home = () => {
 
       {/* SERVICES SECTION */}
       <section id="services">
-        <Title subTitle="Services" title="Our Services" />
+        <Title subTitle="Services" title="Our Benefits" />
         <Services />
       </section>
 
