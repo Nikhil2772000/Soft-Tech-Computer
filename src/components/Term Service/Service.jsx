@@ -1,7 +1,7 @@
 import React from "react";
 import './Service.css';
 
-const Termofservice = () => {
+const Service = () => {
   return (
     <section className="terms-container">
       <div className="terms-wrapper">
@@ -90,4 +90,4 @@ const Termofservice = () => {
   );
 };
 
-export default Termofservice;
+export default Service;

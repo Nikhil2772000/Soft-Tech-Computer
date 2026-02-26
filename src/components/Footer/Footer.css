@@ -225,3 +225,75 @@
   position: relative;
   z-index: 5;             /* 👈 ensure links are above wave */
 }
+
+/* =========================
+   SCROLL TO TOP BUTTON
+========================= */
+.scroll-top-btn {
+  position: fixed;
+  bottom: 26px;
+  right: 26px;
+  width: 54px;
+  height: 54px;
+  border-radius: 14px;
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  box-shadow: 0 14px 30px rgba(14, 165, 233, 0.45);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  z-index: 9999;
+  transition: all 0.35s ease;
+}
+
+.scroll-top-btn:hover {
+  transform: translateY(-6px) scale(1.05);
+  box-shadow: 0 18px 36px rgba(56, 189, 248, 0.65);
+}
+
+/* Arrow Icon */
+.arrow-up {
+  width: 12px;
+  height: 12px;
+  border-left: 3px solid #ffffff;
+  border-bottom: 3px solid #ffffff;
+  transform: rotate(135deg);
+  margin-top: 6px;
+}
+
+/* Subtle floating animation */
+.scroll-top-btn {
+  animation: floatUp 3s ease-in-out infinite;
+}
+
+@keyframes floatUp {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+/* =========================
+   MOBILE OPTIMIZATION
+========================= */
+@media (max-width: 600px) {
+  .scroll-top-btn {
+    width: 46px;
+    height: 46px;
+    bottom: 18px;
+    right: 18px;
+    border-radius: 12px;
+  }
+
+  .arrow-up {
+    width: 10px;
+    height: 10px;
+  }
+}
+

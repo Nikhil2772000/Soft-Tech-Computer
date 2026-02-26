@@ -149,7 +149,7 @@
 
 /* ================= SMALL MOBILE ================= */
 @media (max-width: 480px) {
-  .logo { height: 46px; }
+  .logo { height: 50px; }
   .nav-btn-item .btn { width: 80%; }
 }
 
