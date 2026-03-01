@@ -78,8 +78,13 @@
   margin-top: 20px;
   font-size: 15px;
   line-height: 1.8;
-  color: #94a3b8;
   max-width: 380px;
+   color: #e5e7eb;
+  margin-bottom: 10px;
+}
+
+.footer-text strong {
+  color: #38bdf8;
 }
 
 .footer-social {

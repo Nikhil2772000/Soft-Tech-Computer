@@ -34,10 +34,6 @@ const Footer = () => {
   const shouldShowButton =
     showScroll || location.pathname !== "/";
 
-  const handleLogoClick = () => {
-    navigate("/");
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   // ✅ Scroll Up + Go Home
   const scrollToTop = () => {
@@ -85,12 +81,12 @@ const Footer = () => {
             src={logo}
             alt="Soft Tech Computer"
             className="footer-logo"
-            onClick={handleLogoClick}
           />
 
           <p className="footer-text">
-            Practical, industry-oriented computer training to build a successful IT career.
-            An authorized <strong>MS-CIT</strong> learning center.
+            <strong>Soft Tech Computer</strong> is a trusted learning center dedicated to providing quality computer education.
+            We offer <strong>government-recognized certifications</strong> and modern learning tools to help you succeed
+            in the digital world.
           </p>
 
           <div className="footer-social">

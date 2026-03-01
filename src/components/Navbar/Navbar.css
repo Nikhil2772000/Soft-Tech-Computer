@@ -12,13 +12,13 @@
   left: 0;
   width: 100%;
   z-index: 999;
-  background: rgba(12, 8, 39, 0.95);
-  transition: background 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(12, 8, 39, 0.92);
+  transition: all 0.35s ease;
 }
 
 .navbar.sticky {
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(6px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 12px 35px rgba(56, 189, 248, 0.25);
 }
 
 /* ================= CONTAINER ================= */
@@ -33,34 +33,42 @@
 
 /* ================= LOGO ================= */
 .logo-wrap {
-  display: inline-block;
   cursor: pointer;
   opacity: 0;
-  animation: fadeInDiagonal 1s ease-out forwards;
+  animation: logoReveal 1s ease forwards;
 }
 
-@keyframes fadeInDiagonal {
-  from { opacity: 0; transform: translate(-25px, -25px); }
-  to { opacity: 1; transform: translate(0, 0); }
+@keyframes logoReveal {
+  from {
+    opacity: 0;
+    transform: translateX(-25px) scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
 }
 
 .logo {
-  height: 90px;
+  height: 125px; /* DESKTOP BIG LOGO */
   width: auto;
-  max-width: 100%;
   display: block;
   object-fit: contain;
-  transition: transform 0.3s ease, height 0.3s ease;
+  transition: transform 0.4s ease, filter 0.4s ease, height 0.4s ease;
+  filter: drop-shadow(0 0 14px rgba(56, 189, 248, 0.35));
 }
 
-.logo:hover { transform: scale(1.1); }
+.logo:hover {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 22px rgba(56, 189, 248, 0.6));
+}
 
 /* ================= MENU ================= */
 .nav-menu {
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 30px;
+  gap: 32px;
 }
 
 .nav-link {
@@ -72,91 +80,127 @@
   transition: color 0.3s ease;
 }
 
-/* ================= LINK HOVER ANIMATION ================= */
+/* ================= LINK LIGHT EFFECT ================= */
 .nav-link::after {
   content: "";
   position: absolute;
   width: 0%;
   height: 2px;
-  bottom: -4px;
+  bottom: -6px;
   left: 0;
-  background-color: #38bdf8;
-  transition: width 0.3s ease;
-}
-
-.nav-link:hover::after {
-  width: 100%;
+  background: linear-gradient(90deg, #38bdf8, #0ea5e9);
+  box-shadow: 0 0 10px #38bdf8;
+  transition: width 0.35s ease;
 }
 
 .nav-link:hover {
   color: #38bdf8;
 }
 
+.nav-link:hover::after {
+  width: 100%;
+}
+
 /* ================= BUTTON ================= */
 .nav-btn-item .btn {
-  padding: 10px 22px;
-  background: #38bdf8;
-  color: #0f172a;
-  border: none;
-  border-radius: 25px;
+  padding: 11px 24px;
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: #020617;
+  border-radius: 30px;
   font-size: 15px;
+  font-weight: 600;
   cursor: pointer;
-  transition: background 0.3s ease, transform 0.3s ease;
+  border: none;
+  box-shadow: 0 0 18px rgba(56, 189, 248, 0.45);
+  transition: all 0.35s ease;
 }
 
 .nav-btn-item .btn:hover {
-  background: #0ea5e9;
-  transform: scale(1.05);
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 0 30px rgba(56, 189, 248, 0.75);
 }
 
 /* ================= MOBILE ICON ================= */
 .menu-icon {
-  font-size: 28px;
+  font-size: 30px;
   color: #ffffff;
   cursor: pointer;
   display: none;
+  transition: transform 0.3s ease;
 }
 
-/* ================= TABLET & MOBILE ================= */
+.menu-icon:hover {
+  transform: scale(1.1);
+}
+
+/* ================= TABLET ================= */
+@media (max-width: 1024px) {
+  .logo {
+    height: 75px; /* TABLET LOGO */
+  }
+}
+
+/* ================= MOBILE & TABLET ================= */
 @media (max-width: 768px) {
-  .menu-icon { display: block; }
-  .logo { height: 65px; }
+  .menu-icon {
+    display: block;
+  }
+
+  .logo {
+    height: 60px; /* MOBILE LOGO */
+  }
 
   .nav-menu {
     position: absolute;
     top: 100%;
     left: 0;
     width: 100%;
-    background: #0f172a;
+    background: #020617;
     flex-direction: column;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.4s ease;
+    transition: max-height 0.45s ease;
+    animation: slideDown 0.4s ease forwards;
   }
 
-  .nav-menu.active { max-height: 100vh; overflow-y: auto; }
+  .nav-menu.active {
+    max-height: 100vh;
+  }
 
   .nav-menu li {
-    text-align: center;
     padding: 18px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
 
-  .nav-link { font-size: 17px; }
+  .nav-link {
+    font-size: 17px;
+  }
 
-  .nav-btn-item { padding: 20px 0; }
+  .nav-btn-item {
+    padding: 20px 0;
+  }
 }
 
 /* ================= SMALL MOBILE ================= */
 @media (max-width: 480px) {
-  .logo { height: 50px; }
-  .nav-btn-item .btn { width: 80%; }
+  .logo {
+    height: 48px; /* SMALL PHONE */
+  }
+
+  .nav-btn-item .btn {
+    width: 80%;
+  }
 }
 
-/* ================= LINK / DROPDOWN ANIMATION ================= */
+/* ================= DROPDOWN ANIMATION ================= */
 @keyframes slideDown {
-  from { opacity: 0; transform: translateY(-8px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
-
-
