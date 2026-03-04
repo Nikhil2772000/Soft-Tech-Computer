@@ -6,20 +6,25 @@ const EXPIRY_DAYS = 20;
 
 const Cookies = () => {
   const [visible, setVisible] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
-    const storedData = localStorage.getItem(COOKIES_KEY);
+    try {
+      const storedData = localStorage.getItem(COOKIES_KEY);
+      if (!storedData) {
+        setVisible(true);
+        return;
+      }
 
-    if (!storedData) {
-      setVisible(true);
-      return;
-    }
+      const { expiry } = JSON.parse(storedData);
+      const now = new Date().getTime();
 
-    const { expiry } = JSON.parse(storedData);
-    const now = new Date().getTime();
-
-    if (now > expiry) {
-      // Expired → show banner again
+      if (now > expiry) {
+        localStorage.removeItem(COOKIES_KEY);
+        setVisible(true);
+      }
+    } catch (error) {
+      // If JSON is malformed, clear it and show banner
       localStorage.removeItem(COOKIES_KEY);
       setVisible(true);
     }
@@ -37,28 +42,32 @@ const Cookies = () => {
       })
     );
 
-    setVisible(false);
+    // Trigger closing animation
+    setIsClosing(true);
+    setTimeout(() => setVisible(false), 500); // Matches CSS transition time
   };
 
   if (!visible) return null;
 
   return (
-    <div className="cookie-banner">
-      <div className="cookie-content">
-        <h3>🍪 Cookie Policy</h3>
-        <p>
-          <strong>Soft Tech Computer Training Learning Center</strong> uses cookies
-          to enhance your browsing experience, analyze traffic, and deliver
-          relevant content. By clicking <b>Accept</b>, you consent to the use of
-          cookies.
-        </p>
+    <div className={`cookie-container ${isClosing ? "exit" : ""}`}>
+      <div className="cookie-card">
+        <div className="cookie-icon">🍪</div>
+        <div className="cookie-text">
+          <h3>Cookie Policy</h3>
+          <p>
+            <strong>Soft Tech Computer Training</strong> uses cookies to 
+            improve your experience. By clicking <b>Accept</b>, you agree to our 
+            data settings.
+          </p>
+        </div>
 
         <div className="cookie-actions">
-          <button className="btn accept" onClick={() => saveConsent("accepted")}>
-            Accept
-          </button>
-          <button className="btn decline" onClick={() => saveConsent("declined")}>
+          <button className="btn btn-decline" onClick={() => saveConsent("declined")}>
             Decline
+          </button>
+          <button className="btn btn-accept" onClick={() => saveConsent("accepted")}>
+            <span>Accept All</span>
           </button>
         </div>
       </div>

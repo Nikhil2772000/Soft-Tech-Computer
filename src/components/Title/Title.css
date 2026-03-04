@@ -1,42 +1,78 @@
-/* ================= TITLE BOX ================= */
+/* ================= TITLE CONTAINER ================= */
+.title-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 80px 0 50px;
+  overflow: hidden; /* Prevents animation overflow */
+}
+
 .title-box {
-  margin: 100px auto 55px;
-  padding: 64px 32px;
   text-align: center;
-
-  
-  border-radius: 22px;
-
-
-  animation: fadeUp 0.8s ease-out forwards;
+  position: relative;
+  padding: 10px 20px;
+  /* Entrance animation for the whole block */
+  animation: titleEntrance 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 /* ================= SUBTITLE ================= */
 .subtitle {
-  display: inline-block;
-  margin-bottom: 14px;
-
+  display: block;
   font-size: 14px;
-  font-weight: 600;
-  letter-spacing: 1.4px;
+  font-weight: 700;
+  color: #6366f1; /* Modern Indigo */
   text-transform: uppercase;
-
-  color: #01080c;
+  letter-spacing: 4px;
+  margin-bottom: 12px;
+  animation: fadeIn 1.5s ease-out forwards;
 }
 
 /* ================= MAIN TITLE ================= */
 .title-heading {
-  font-size: 36px;
-  font-weight: 700;
-  line-height: 1.3;
-  color: #df0e0e;
+  font-size: 48px;
+  font-weight: 800;
+  color: #1e293b;
+  line-height: 1.2;
+  margin: 0;
+  /* Premium Gradient Text */
+  background: linear-gradient(135deg, #1e293b 20%, #4f46e5 80%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
-/* ================= ANIMATION ================= */
-@keyframes fadeUp {
+/* ================= LOADING UNDERLINE ================= */
+.title-underline {
+  height: 5px;
+  width: 80px;
+  background: #e2e8f0; /* Track color */
+  margin: 18px auto 0;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  /* Expand animation on load */
+  animation: expandWidth 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* The Animated Loading Bar inside the track */
+.title-underline::after {
+  content: '';
+  position: absolute;
+  left: -100%;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, transparent, #6366f1, #3b82f6, transparent);
+  /* Continuous flowing animation */
+  animation: loadingFlow 2.5s infinite linear;
+}
+
+/* ================= ANIMATIONS ================= */
+
+/* Entrance for the text */
+@keyframes titleEntrance {
   from {
     opacity: 0;
-    transform: translateY(24px);
+    transform: translateY(40px);
   }
   to {
     opacity: 1;
@@ -44,37 +80,56 @@
   }
 }
 
-/* ================= TABLET ================= */
+/* Fade in for subtitle */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* Expand the underline width */
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 80px; }
+}
+
+/* Continuous flow effect for underline */
+@keyframes loadingFlow {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+
+/* ================= RESPONSIVE DESIGN ================= */
+
+/* TABLET (≤768px) */
 @media (max-width: 768px) {
-  .title-box {
-    max-width: 94%;
-    padding: 36px 26px;
-    margin: 65px auto 45px;
+  .title-container {
+    margin: 50px 0 30px;
   }
-
   .title-heading {
-    font-size: 30px;
+    font-size: 36px;
   }
-
   .subtitle {
     font-size: 13px;
+    letter-spacing: 3px;
   }
 }
 
-/* ================= MOBILE ================= */
+/* MOBILE (≤480px) */
 @media (max-width: 480px) {
-  .title-box {
-    padding: 28px 20px;
-    margin: 45px 14px 35px;
-    border-radius: 18px;
+  .title-container {
+    margin: 40px 0 20px;
+    padding: 0 20px;
   }
-
   .title-heading {
-    font-size: 22px;
+    font-size: 28px;
   }
-
-  .subtitle {
-    font-size: 12px;
-    letter-spacing: 1px;
+  .title-underline {
+    width: 60px;
+    height: 4px;
+    margin-top: 14px;
+  }
+  @keyframes expandWidth {
+    from { width: 0; }
+    to { width: 60px; }
   }
 }

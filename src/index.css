@@ -1,7 +1,7 @@
 /* ================= GOOGLE FONTS ================= */
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Roboto+Condensed:wght@100..900&display=swap");
 
-/* ================= RESET ================= */
+/* ================= RESET & CORE ================= */
 *,
 *::before,
 *::after {
@@ -10,222 +10,212 @@
   box-sizing: border-box;
 }
 
-/* ================= ROOT VARIABLES ================= */
 :root {
   --primary: #6366f1;
   --secondary: #3b82f6;
-  --dark: #1e293b;
+  --accent: #10b981; /* Added a success/accent color */
+  --dark: #0f172a;
+  --text-muted: #64748b;
   --light-bg: #f8fafc;
-  --radius: 16px;
-  --transition: all 0.3s ease;
+  --white: #ffffff;
+  --radius: 20px; /* Slightly rounder for modern look */
+  --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
-/* ================= HTML ================= */
 html {
   scroll-behavior: smooth;
+  overflow-x: hidden; /* Prevent horizontal scroll bugs */
 }
 
-/* Offset for fixed navbar */
-section {
-  scroll-margin-top: 90px;
-}
-
-/* ================= BODY ================= */
 body {
   font-family: "Outfit", sans-serif;
-  line-height: 1.7;
+  line-height: 1.6;
   min-height: 100vh;
-  padding-top: 80px;
-
+  padding-top: 85px; /* Adjust based on your Navbar height */
   color: var(--dark);
-  background: linear-gradient(180deg, #f8fafc, #eef2ff);
-
+  background: radial-gradient(circle at top right, #f8fafc, #eef2ff 100%);
   -webkit-font-smoothing: antialiased;
-  transition: padding 0.3s ease;
 }
 
-/* ================= LINKS ================= */
-a {
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
+/* ================= LAYOUT ================= */
+.container {
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+section {
+  padding: 80px 0;
+  scroll-margin-top: 100px;
+}
+
+/* ================= NAVIGATION/LOGO ================= */
+.site-logo {
+  width: 80px;
+  height: auto;
+  display: block;
   transition: var(--transition);
 }
 
-a:hover {
-  opacity: 0.9;
-  transform: translateY(-2px);
-}
-
-/* ================= CONTAINER ================= */
-.container {
-  width: 100%;
-  max-width: 1400px;
-  margin: auto;
-  padding: 0 10%;
-  transition: padding 0.3s ease;
-}
-
-/* ================= SCROLLBAR ================= */
-::-webkit-scrollbar {
-  width: 8px;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #cbd5e1;
-  border-radius: 10px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #94a3b8;
-}
-
-/* ================= LOGO ================= */
-.site-logo {
-  width: 80px;
-  object-fit: contain;
-  border-radius: 10px;
-  transition: transform 0.4s ease, width 0.3s ease;
-}
-
 .site-logo:hover {
-  transform: scale(1.1) rotate(-1deg);
+  transform: scale(1.05) rotate(-2deg);
+  filter: drop-shadow(0 0 8px rgba(99, 102, 241, 0.3));
 }
 
-/* ================= CARD ================= */
+/* ================= COMPONENTS ================= */
+a {
+  text-decoration: none;
+  display: inline-block;
+  transition: var(--transition);
+}
+
 .card {
-  background: #ffffff;
+  background: var(--white);
+  border: 1px solid rgba(226, 232, 240, 0.8);
   border-radius: var(--radius);
-  padding: 24px;
-  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
-  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  padding: 2rem;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
 }
 
 .card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 25px 45px rgba(15, 23, 42, 0.15);
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-lg);
+  border-color: var(--primary);
 }
 
-/* ================= BUTTON ================= */
 .btn {
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  padding: 12px 26px;
-  border-radius: 999px;
+  gap: 8px;
+  padding: 14px 32px;
+  border-radius: 50px;
   font-weight: 600;
-  color: #fff;
+  cursor: pointer;
+  border: none;
   background: linear-gradient(135deg, var(--primary), var(--secondary));
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  color: var(--white);
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
 
 .btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 14px 28px rgba(99, 102, 241, 0.4);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
 }
 
-/* ================= FADE + SLIDE ANIMATIONS ================= */
-.fade-in {
-  animation: fadeIn 0.9s ease forwards;
+/* ================= SCROLLBAR ================= */
+::-webkit-scrollbar {
+  width: 10px;
 }
 
-.slide-up {
-  animation: slideUp 0.8s ease forwards;
+::-webkit-scrollbar-track {
+  background: var(--light-bg);
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 5px;
+  border: 2px solid var(--light-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary);
+}
+
+/* ================= ANIMATIONS ================= */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: 0.8s all ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-up {
+  animation: slideUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* ================= RESPONSIVE (Breakpoints) ================= */
+
+/* Desktop & Large Screens */
+@media (min-width: 1200px) {
+  .container { padding: 0 4rem; }
+}
+
+/* Tablets (1024px to 769px) */
+@media (max-width: 1024px) {
+  section { padding: 60px 0; }
+  .site-logo { width: 70px; }
+}
+
+/* Mobile (768px and below) */
+@media (max-width: 768px) {
+  body { padding-top: 75px; }
+  
+  .container { padding: 0 1.5rem; }
+  
+  .card { padding: 1.5rem; }
+
+  .btn {
+    padding: 12px 24px;
+    font-size: 0.95rem;
+  }
+}
+
+/* Small Phones (480px and below) */
+@media (max-width: 480px) {
+  :root { --radius: 16px; }
+  
+  body { padding-top: 70px; }
+
+  section { padding: 40px 0; }
+
+  .btn {
+    width: 100%; /* Full width buttons look better on small phones */
+    text-align: center;
+  }
+
+  .site-logo { width: 60px; }
+}
+
+/* Ensure page takes full height so footer stays at bottom */
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.page-wrapper {
+  flex: 1; /* Pushes footer down */
+  animation: pageFadeIn 0.6s ease-out;
+}
+
+/* Smooth page entry transition */
+@keyframes pageFadeIn {
   from {
     opacity: 0;
-    transform: translateY(25px);
+    filter: blur(5px);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    filter: blur(0);
   }
 }
 
-/* ================= DESKTOP (≥1200px) ================= */
-@media (min-width: 1200px) {
-  body {
-    padding-top: 85px;
-  }
-
-  .container {
-    padding: 0 12%;
-  }
-
-  section {
-    scroll-margin-top: 95px;
-  }
-
-  .site-logo {
-    width: 90px;
-  }
-}
-
-/* ================= TABLET (≤1024px) ================= */
-@media (max-width: 1024px) {
-  body {
-    padding-top: 75px;
-  }
-
-  .container {
-    padding: 0 8%;
-  }
-
-  .site-logo {
-    width: 65px;
-  }
-}
-
-/* ================= MOBILE (≤768px) ================= */
+/* Responsive Padding Adjustment */
 @media (max-width: 768px) {
-  body {
-    padding-top: 70px;
-  }
-
-  .container {
-    padding: 0 6%;
-  }
-
-  .card {
-    padding: 18px;
-  }
-
-  .btn {
-    padding: 10px 22px;
-    font-size: 15px;
-  }
-
-  .site-logo {
-    width: 55px;
-  }
-}
-
-/* ================= SMALL MOBILE (≤480px) ================= */
-@media (max-width: 480px) {
-  body {
-    padding-top: 65px;
-  }
-
-  .container {
-    padding: 0 5%;
-  }
-
-  .btn {
-    width: 100%;
-  }
-
-  .site-logo {
-    width: 45px;
+  .page-wrapper {
+    padding-top: 10px; /* Adjust based on your mobile navbar height */
   }
 }
