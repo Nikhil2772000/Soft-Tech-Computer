@@ -121,8 +121,9 @@ const Contact = () => {
           <div className="info-item">
             <img src={mapIcon} alt="Location" />
             <span>
-              Near Suyog Hospital, Buldhana Rd<br />
-              Motala, Maharashtra 443103
+              Buldhana Rd, Near Suyog Hospital, Phata, Motala, Borakhedi,<br />
+              Maharashtra 443103,<br />
+              India
             </span>
           </div>
 
