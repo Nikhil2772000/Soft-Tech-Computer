@@ -14,7 +14,7 @@ const About = () => {
           entry.target.classList.add("show");
           if (!hasCounted) {
             let start = 0;
-            const end = 26;
+            const end = 21;
             const timer = setInterval(() => {
               start += 1;
               if (start >= end) {
