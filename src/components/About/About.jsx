@@ -1,104 +1,103 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./About.css";
-import aboutImg from "../../assets/nav.webp"; 
+import aboutVideo from "../../assets/snapsave-app_680199827675934_hd.mp4";
 
 const About = () => {
   const aboutRef = useRef(null);
-  const [years, setYears] = useState(0);
-  const [hasCounted, setHasCounted] = useState(false);
+  const videoRef = useRef(null);
+  const [isMuted, setIsMuted] = useState(true);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
           entry.target.classList.add("show");
-          if (!hasCounted) {
-            let start = 0;
-            const end = 21;
-            const timer = setInterval(() => {
-              start += 1;
-              if (start >= end) {
-                setYears(end);
-                clearInterval(timer);
-              } else {
-                setYears(start);
-              }
-            }, 50);
-            setHasCounted(true);
-          }
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
     if (aboutRef.current) observer.observe(aboutRef.current);
-    return () => observer.disconnect();
-  }, [hasCounted]);
+
+    // Auto-unmute logic: Unmutes as soon as the user interacts with the page
+    const enableAudio = () => {
+      if (videoRef.current) {
+        videoRef.current.muted = false;
+        setIsMuted(false);
+      }
+      window.removeEventListener("click", enableAudio);
+    };
+    window.addEventListener("click", enableAudio);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("click", enableAudio);
+    };
+  }, []);
 
   return (
     <section className="about-section" ref={aboutRef}>
       <div className="about-container">
-        
-        {/* Left Side: Visuals */}
-        <div className="about-image">
-          <div className="image-border-deco"></div>
-          <img src={aboutImg} alt="Soft Tech Computer Learning Center" />
-          <div className="experience-badge">
-            <span className="years">{years}+</span>
-            <span className="exp-text">Years Excellence</span>
+
+        {/* Left Side: Medium Video */}
+        <div className="about-visual">
+          <div className="video-card-box">
+            <video
+              ref={videoRef}
+              src={aboutVideo}
+              autoPlay
+              loop
+              muted={isMuted}
+              playsInline
+              className="about-video-element"
+            />
+            <div className="audio-status-tag">
+              {isMuted ? "🔇 Click anywhere for Sound" : "🔊 Audio On"}
+            </div>
           </div>
         </div>
 
         {/* Right Side: Information */}
         <div className="about-content">
+          <div className="est-tag">Since 2005</div>
           <span className="about-tag">Premier IT & Development Hub</span>
-          <h2>Building Careers Since 2005</h2>
-          
-          <div className="divider"></div>
+          <h2>Empowering Your Digital Future</h2>
+
+          <div className="accent-line"></div>
 
           <p className="main-para">
-            <strong>Soft Tech Computer</strong> is more than just a training center; we are a 
-            <strong> Learning & Development Ecosystem</strong>. Since 2005, we have been 
-            pioneering IT education by providing a structured growth path for every student.
+            <strong>Soft Tech Computer</strong> is a leading <strong>Learning & Development Ecosystem</strong>.
+            We specialize in transforming beginners into industry-ready professionals through
+            our <strong>"Theory-to-Execution"</strong> model.
+
+
+            At Soft Tech Computer, we also support students with
+            <strong>job assistance, interview preparation, resume building</strong>, and
+            <strong>live project exposure</strong> to boost their confidence and employability.
           </p>
 
-          <p className="sub-para">
-            From foundational courses like <strong>MS-CIT</strong> to advanced 
-            <strong> Software Development</strong>, our curriculum is designed to meet 
-            global industry standards. We focus on a "Theory-to-Execution" model, ensuring 
-            practical mastery over every concept.
-          </p>
+          <div className="training-tracks">
+            <ul className="course-list">
+              <li><strong>🎓 Govt. Certified:</strong> MS-CIT & KLiC</li>
+              <li><strong>📊 Accounting:</strong> Tally Prime & GST</li>
+              <li><strong>🎨 Creative:</strong> Graphics & UI/UX</li>
+            </ul>
+          </div>
 
-          {/* Feature Grid */}
-          <div className="about-features">
-            <div className="feature-card">
-              <span className="feature-icon">✔</span>
-              <div className="feature-text">
-                <strong>Structured Growth</strong>
-                <p>Step-by-step learning from Basics to Pro.</p>
+          {/* Boxed Features */}
+          <div className="feature-box-container">
+            <div className="feature-box">
+              <span className="box-icon">👨‍🏫</span>
+              <div className="box-text">
+                <strong>Industry Mentors</strong>
+                <p>Learn from working developers</p>
               </div>
             </div>
 
-            <div className="feature-card">
-              <span className="feature-icon">✔</span>
-              <div className="feature-text">
-                <strong>MS-CIT Authorized</strong>
-                <p>Official center for IT literacy & certification.</p>
-              </div>
-            </div>
-
-            <div className="feature-card">
-              <span className="feature-icon">✔</span>
-              <div className="feature-text">
-                <strong>Expert Mentorship</strong>
-                <p>Learn from certified industry professionals.</p>
-              </div>
-            </div>
-
-            <div className="feature-card">
-              <span className="feature-icon">✔</span>
-              <div className="feature-text">
-                <strong>Practical Lab</strong>
-                <p>24/7 access to high-performance machines.</p>
+            <div className="feature-box">
+              <span className="box-icon">🛠</span>
+              <div className="box-text">
+                <strong>100% Practical</strong>
+                <p>Project-based learning approach</p>
               </div>
             </div>
           </div>
