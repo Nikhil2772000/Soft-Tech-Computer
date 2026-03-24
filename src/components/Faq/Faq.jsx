@@ -23,7 +23,7 @@ const faqData = [
     answer: "Yes, Microsoft Office and more are taught in the courses."
   },
   {
-    question: "6. What are the operating hours?",
+    question: "6. What are the Office Time?",
     answer: "Monday to Saturday: 7:00 am - 5:00 pm, Sunday: Closed."
   },
 ];
