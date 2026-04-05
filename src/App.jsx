@@ -15,7 +15,7 @@ import Testimonials from "./components/Testimonials/Testimonials";
 import Contact from "./components/Contact us/Contact";
 import Policy from "./components/PP/Policy";
 import Service from "./components/Term Service/Service";
-import Thanku from "./components/Thank/Thanku";
+import Thanku from "./components/Thanku/Thanku";
 
 
 // Scroll to Top on Route Change
@@ -47,7 +47,7 @@ const App = () => {
           <Route path="/services" element={<Services />} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/thank-you" element={<Thanku />} />
+         <Route path="/thank-you" element={<Thanku />} />
           <Route path="/policy" element={<Policy />} />
           <Route path="/service" element={<Service />} />
           
