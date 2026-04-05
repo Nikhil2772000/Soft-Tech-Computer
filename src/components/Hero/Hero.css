@@ -148,6 +148,8 @@
   transform: scale(1);
 }
 
+
+
 /* ================= KEYFRAMES ================= */
 @keyframes rotateFast {
   from { transform: rotate(0deg); }
@@ -189,3 +191,4 @@
   .hero-description { font-size: 0.95rem; }
   .decor-circle { width: 108%; height: 108%; }
 }
+

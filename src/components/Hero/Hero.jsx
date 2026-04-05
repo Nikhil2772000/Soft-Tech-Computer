@@ -8,6 +8,8 @@ import banner3 from "../../assets/computer logo.jpg";
 import banner4 from "../../assets/laptop2.jpg";
 import banner5 from "../../assets/students.webp";
 
+
+
 const images = [banner1, banner2, banner3, banner4, banner5];
 
 const Hero = () => {
@@ -20,11 +22,13 @@ const Hero = () => {
     return () => clearInterval(interval);
   }, []);
 
+ 
+
   return (
     <section className="hero">
       {/* Background Hexagon Pattern Overlay */}
       <div className="hero-overlay"></div>
-      
+
       <div className="hero-container">
         <div className="hero-left">
           <span className="hero-badge">ISO Certified Institute</span>
@@ -36,8 +40,8 @@ const Hero = () => {
             Center Code : <span>32210149</span>
           </div>
           <p className="hero-description">
-            Empowering students with <strong>MS-CIT</strong> and cutting-edge 
-            <strong> IT skills</strong>. Join us to transform your digital future 
+            Empowering students with <strong>MS-CIT</strong> and cutting-edge
+            <strong> IT skills</strong>. Join us to transform your digital future
             with professional guidance.
           </p>
         </div>
@@ -45,10 +49,10 @@ const Hero = () => {
         <div className="hero-right">
           {/* SLOW ROTATION: Blue Glow */}
           <div className="blob-shape"></div>
-          
+
           {/* FAST ROTATION: Benzene / Hex Frame */}
           <div className="decor-circle"></div>
-          
+
           <div className="image-frame">
             {images.map((img, index) => (
               <div

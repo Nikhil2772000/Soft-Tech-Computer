@@ -270,3 +270,63 @@ input:focus, textarea:focus {
     font-size: 14px;
   }
 }
+
+/* Base Styles (Desktop & General) */
+.submit-btn {
+  background-color: #2563eb;
+  color: white;
+  padding: 12px 24px; /* Slightly larger for better feel */
+  border: none;
+  border-radius: 8px; /* Softer corners */
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+  width: auto; /* Desktop button width fits the text */
+  min-width: 160px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.submit-btn:hover:not(:disabled) {
+  background-color: #1d4ed8;
+  transform: translateY(-1px); /* Subtle lift on hover */
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(0); /* Press down effect */
+}
+
+/* Mobile Screen Adjustments (Screens smaller than 600px) */
+@media (max-width: 600px) {
+  .submit-btn {
+    width: 100%;      /* Full width on mobile for easy tapping */
+    padding: 15px;    /* Larger tap area */
+    font-size: 18px;  /* Slightly larger text for readability */
+  }
+}
+
+/* Loading/Disabled state */
+.submit-btn:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+  opacity: 0.8;
+  transform: none; /* Disable the lift effect */
+}
+
+/* Spinner Animation */
+.spinner {
+  width: 18px;
+  height: 18px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}

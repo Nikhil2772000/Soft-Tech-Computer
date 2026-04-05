@@ -1,13 +1,9 @@
 {
-  "cleanUrls": true,
   "rewrites": [
-    {
-      "source": "/thanku",
-      "destination": "/thanku.html"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
+    { 
+      "source": "/((?!api|_next/static|_next/image|favicon.ico).*)", 
+      "destination": "/" 
     }
   ]
 }
+

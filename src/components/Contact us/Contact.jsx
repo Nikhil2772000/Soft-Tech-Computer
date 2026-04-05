@@ -201,8 +201,19 @@ const Contact = () => {
               className={errors.message ? "error" : ""}
             />
 
-            <button type="submit" disabled={loading}>
-              {loading ? "Sending..." : "Send Message"}
+            <button
+              type="submit"
+              disabled={loading}
+              className={`submit-btn ${loading ? "loading" : ""}`}
+            >
+              {loading ? (
+                <>
+                  <span className="spinner"></span>
+                  Sending...
+                </>
+              ) : (
+                "Send Message"
+              )}
             </button>
           </form>
         </div>
