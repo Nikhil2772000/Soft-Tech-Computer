@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './Faq.css';
+import Man from '../../assets/Man.webp';
 
 const faqData = [
   {
@@ -36,21 +37,65 @@ const Faq = () => {
   };
 
   return (
-    <div className="faq-container">
-      <h2>Frequently Asked Questions</h2>
-      <div className="faq-wrapper">
-        {faqData.map((item, index) => (
-          <div 
-            key={index} 
-            className={`faq-item ${activeIndex === index ? 'active' : ''}`}
-            onClick={() => toggleFaq(index)}
-          >
-            <div className="faq-question">{item.question}</div>
-            <div className="faq-answer">{item.answer}</div>
+    <section className="hero-faq-section">
+      <div className="main-wrapper">
+
+        {/* LEFT SIDE: Floating Image */}
+        <div className="left-content-visual">
+          <div className="circle-decoration"></div>
+          <img
+            src={Man}
+            alt="Success Guide"
+            className="main-person-img floating-anim"
+          />
+        </div>
+
+        {/* RIGHT SIDE: Information */}
+        <div className="right-content-info">
+          <h1 className="hero-headline">Join Us Now And Begin Your Digital Success Journey</h1>
+          <p className="hero-subtext">
+            Take your business to new heights by collaborating with Nagpur’s most
+            credible digital marketing agency, <strong>Motala Soft Tech</strong>.
+            Our ROI-focused strategy will bring you tangible results.
+          </p>
+
+          <div className="button-row">
+            {/* Wrap the button in a 'tel' link */}
+            <a href="tel:+919876543210" className="call-link">
+              <button className="btn-call">
+                <span className="btn-icon">📞</span>
+                Call Now: +91 8380863037
+              </button>
+            </a>
           </div>
-        ))}
+
+          <div className="faq-box">
+            <h2 className="faq-title">Frequently Asked Questions</h2>
+            <div className="faq-accordion">
+              {faqData.map((item, index) => (
+                <div
+                  key={index}
+                  className={`faq-row ${activeIndex === index ? 'is-active' : ''}`}
+                  onClick={() => toggleFaq(index)}
+                  style={{ animationDelay: `${0.2 * index}s` }}
+                >
+                  <div className="faq-q-text">
+                    {item.question}
+                    <span className="faq-plus-minus">
+                      {activeIndex === index ? '−' : '+'}
+                    </span>
+                  </div>
+                  <div className="faq-a-text">
+                    <div className="a-inner">{item.answer}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
       </div>
-    </div>
+    </section>
   );
 };
 
