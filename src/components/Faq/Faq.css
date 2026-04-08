@@ -2,7 +2,7 @@
 .hero-faq-section {
   width: 100%;
   min-height: 100vh;
-  background-color: #7e83c7; /* Changed from #dbcbcb for a cleaner professional look */
+  background-color: #dadbe6; /* Changed from #dbcbcb for a cleaner professional look */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -31,7 +31,7 @@
   position: absolute;
   width: 80%;
   aspect-ratio: 1/1;
-  background-color: #040803;
+  background-color: #07a5e4;
   border-radius: 50%;
   z-index: 1;
   top: 50%;
@@ -62,7 +62,7 @@
 /* --- RIGHT SIDE: CONTENT & TYPOGRAPHY --- */
 .hero-headline {
   font-size: clamp(30px, 5vw, 42px);
-  color: #0640aa;
+  color: #0441b1;
   font-weight: 800;
   line-height: 1.1;
   margin-bottom: 20px;
