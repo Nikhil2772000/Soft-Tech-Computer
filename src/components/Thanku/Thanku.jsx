@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Thanku.css";
 import { useNavigate } from "react-router-dom";
+// Ensure the image is in your src folder or public folder
+import natureBg from "../../assets/natures.webp";
 
 const Thanku = () => {
   const canvasRef = useRef(null);
@@ -9,34 +11,27 @@ const Thanku = () => {
 
   const colors = ["#ff6b6b", "#48dbfb", "#1dd1a1", "#c77dff", "#ff9ff3"];
 
-  /* ================= 🔊 Voice Greeting ================= */
   const speakGreeting = () => {
     window.speechSynthesis.cancel();
-    const msg = new SpeechSynthesisUtterance(
-      "Thank You! Our team will contact you."
-    );
+    const msg = new SpeechSynthesisUtterance("Thank You! Our team will contact you.");
     msg.rate = 1;
     msg.pitch = 1.1;
     window.speechSynthesis.speak(msg);
   };
 
-  /* ================= ⬅ Back to Home ================= */
   const goHome = () => {
-    window.speechSynthesis.cancel(); // stop voice
-    navigate("/"); // redirect to home
+    window.speechSynthesis.cancel();
+    navigate("/");
   };
 
   useEffect(() => {
     speakGreeting();
-
     const timer = setInterval(() => {
       setColorIndex((prev) => (prev + 1) % colors.length);
     }, 3500);
-
     return () => clearInterval(timer);
   }, []);
 
-  /* ================= 🎆 Fireworks ================= */
   useEffect(() => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
@@ -84,10 +79,10 @@ const Thanku = () => {
     };
 
     const animate = () => {
-      ctx.fillStyle = "rgba(0,0,0,0.15)";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      // Clear with slight transparency for trail effect
+      ctx.clearRect(0, 0, canvas.width, canvas.height); 
 
-      if (Math.random() < 0.04) explode();
+      if (Math.random() < 0.05) explode();
 
       particles = particles.filter((p) => p.life > 0);
       particles.forEach((p) => {
@@ -106,16 +101,21 @@ const Thanku = () => {
   }, []);
 
   return (
-    <section
-      className="thanku-section"
-      style={{ backgroundColor: colors[colorIndex] }}
+    <section 
+      className="thanku-section" 
+      style={{ backgroundImage: `url(${natureBg})` }}
     >
+      {/* Overlay to help text readability */}
+      <div className="bg-overlay"></div>
+      
       <canvas ref={canvasRef} className="firework-canvas" />
 
       <div className="thanku-card">
         <div className="check-container">✓</div>
 
-        <h1 className="thanku-title">Success 🎉</h1>
+        <h1 className="thanku-title" style={{ color: colors[colorIndex] }}>
+          Thank You 🎉
+        </h1>
 
         <p className="thanku-text">
           Your message was sent successfully.

@@ -1,185 +1,141 @@
-/* ===== Layout ===== */
+/* Container setup */
 .thanku-section {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 20px;
-  overflow: hidden;
   position: relative;
-
-  /* animated gradient background */
-  background: linear-gradient(
-    120deg,
-    #ff6b6b,
-    #48dbfb,
-    #1dd1a1,
-    #c77dff,
-    #ff9ff3
-  );
-  background-size: 400% 400%;
-  animation: bgMove 12s ease infinite;
-}
-
-/* background light motion */
-@keyframes bgMove {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* ===== Card ===== */
-.thanku-card {
-  background: rgba(255, 255, 255, 0.95);
-  max-width: 520px;
+  height: 100vh;
   width: 100%;
-  padding: 50px 35px;
-  border-radius: 30px;
-  text-align: center;
-  z-index: 5;
-
-  animation: cardPop 0.9s ease;
-  box-shadow:
-    0 30px 70px rgba(0, 0, 0, 0.18),
-    0 0 40px rgba(37, 99, 235, 0.15);
-}
-
-/* card entrance */
-@keyframes cardPop {
-  0% {
-    opacity: 0;
-    transform: scale(0.9) translateY(40px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
-}
-
-/* ===== Check Icon ===== */
-.check-container {
-  width: 80px;
-  height: 80px;
-  margin: 0 auto 25px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #1dd1a1, #10b981);
-  color: white;
-  font-size: 42px;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  animation: pulseGlow 2s infinite;
-  box-shadow: 0 0 25px rgba(16, 185, 129, 0.7);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
-/* glowing pulse */
-@keyframes pulseGlow {
-  0% {
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
-  }
-  50% {
-    box-shadow: 0 0 35px rgba(16, 185, 129, 0.9);
-  }
-  100% {
-    box-shadow: 0 0 15px rgba(16, 185, 129, 0.6);
-  }
-}
-
-/* ===== Text ===== */
-.thanku-title {
-  font-size: 40px;
-  font-weight: 800;
-  color: #0f172a;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.thanku-text {
-  margin: 20px auto;
-  font-size: 18px;
-  color: #475569;
-  line-height: 1.7;
-}
-
-.thanku-sub {
-  margin-top: 15px;
-  font-size: 16px;
-}
-
-/* glowing brand */
-.brand-glow {
-  color: #2563eb;
-  font-size: 20px;
-  text-shadow: 0 0 12px rgba(37, 99, 235, 0.6);
-  animation: glowText 2.5s ease-in-out infinite;
-}
-
-@keyframes glowText {
-  0% { text-shadow: 0 0 8px rgba(37, 99, 235, 0.5); }
-  50% { text-shadow: 0 0 18px rgba(37, 99, 235, 0.9); }
-  100% { text-shadow: 0 0 8px rgba(37, 99, 235, 0.5); }
-}
-
-/* ===== Buttons ===== */
-.button-wrapper {
-  margin-top: 30px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.thanku-btn,
-.speak-btn {
-  padding: 16px;
-  border-radius: 50px;
-  font-weight: 600;
-  border: none;
-  cursor: pointer;
-  transition: all 0.35s ease;
-}
-
-/* main button */
-.thanku-btn {
-  background: linear-gradient(135deg, #0f172a, #1e293b);
-  color: #fff;
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.4);
-}
-
-.thanku-btn:hover {
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.6);
-}
-
-/* speak button */
-.speak-btn {
-  background: #e2e8f0;
-  color: #0f172a;
-}
-
-.speak-btn:hover {
-  background: #cbd5f5;
-  transform: scale(1.03);
-}
-
-/* ===== Fireworks Canvas ===== */
-.firework-canvas {
+/* Darken background slightly for contrast */
+.bg-overlay {
   position: absolute;
-  inset: 0;
-  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
   z-index: 1;
 }
 
-/* ===== Mobile ===== */
-@media (max-width: 600px) {
+.firework-canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Glassmorphism Card */
+.thanku-card {
+  position: relative;
+  z-index: 3;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  padding: 3rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  max-width: 500px;
+  width: 90%;
+  animation: slideUp 0.8s ease-out;
+}
+
+.check-container {
+  width: 70px;
+  height: 70px;
+  background: #1dd1a1;
+  color: white;
+  font-size: 40px;
+  line-height: 70px;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  animation: scaleIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.thanku-title {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  transition: color 0.8s ease;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+}
+
+.thanku-text {
+  color: #fff;
+  font-size: 1.2rem;
+  line-height: 1.6;
+}
+
+.thanku-sub {
+  margin-top: 2rem;
+  color: #ddd;
+  font-size: 0.9rem;
+}
+
+.brand-glow {
+  color: #fff;
+  font-size: 1.1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.thanku-btn {
+  margin-top: 25px;
+  padding: 12px 30px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 50px;
+  background: #fff;
+  color: #333;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+  font-weight: bold;
+}
+
+.thanku-btn:hover {
+  transform: scale(1.05);
+  background: #f0f0f0;
+}
+
+/* Animations */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+/* Responsive Queries */
+@media (max-width: 768px) {
   .thanku-card {
-    padding: 35px 25px;
+    padding: 2rem;
   }
-
   .thanku-title {
-    font-size: 32px;
+    font-size: 2.2rem;
   }
-
   .thanku-text {
-    font-size: 16px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .thanku-section {
+    background-attachment: scroll; /* Better for mobile performance */
+  }
+  .thanku-card {
+    width: 85%;
+    padding: 1.5rem;
   }
 }
