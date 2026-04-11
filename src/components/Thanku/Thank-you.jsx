@@ -3,6 +3,7 @@ import "./Thank-you.css";
 import { useNavigate } from "react-router-dom";
 // Ensure the image is in your src folder or public folder
 import natureBg from "../../assets/natures.webp";
+import { Link } from 'react-router-dom';
 
 const Thanku = () => {
   const canvasRef = useRef(null);
@@ -19,10 +20,6 @@ const Thanku = () => {
     window.speechSynthesis.speak(msg);
   };
 
-  const goHome = () => {
-    window.speechSynthesis.cancel();
-    navigate("/");
-  };
 
   useEffect(() => {
     speakGreeting();
@@ -80,7 +77,7 @@ const Thanku = () => {
 
     const animate = () => {
       // Clear with slight transparency for trail effect
-      ctx.clearRect(0, 0, canvas.width, canvas.height); 
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       if (Math.random() < 0.05) explode();
 
@@ -100,14 +97,16 @@ const Thanku = () => {
     };
   }, []);
 
+
+
   return (
-    <section 
-      className="thanku-section" 
+    <section
+      className="thanku-section"
       style={{ backgroundImage: `url(${natureBg})` }}
     >
       {/* Overlay to help text readability */}
       <div className="bg-overlay"></div>
-      
+
       <canvas ref={canvasRef} className="firework-canvas" />
 
       <div className="thanku-card">
@@ -129,9 +128,9 @@ const Thanku = () => {
         </p>
 
         <div className="button-wrapper">
-          <button className="thanku-btn" onClick={goHome}>
+          <Link to="/home" className="thanku-btn">
             ← Back to Home
-          </button>
+          </Link>
         </div>
       </div>
     </section>
