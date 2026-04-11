@@ -3,14 +3,15 @@ import "./Hero.css";
 
 // Assuming these paths are correct in your project
 import banner1 from "../../assets/mscit.webp";
-import banner2 from "../../assets/about us.jpg";
+import banner2 from "../../assets/mscit2.png";
 import banner3 from "../../assets/computer logo.jpg";
 import banner4 from "../../assets/laptop2.jpg";
 import banner5 from "../../assets/students.webp";
+import banner6 from "../../assets/about.png";
 
 
 
-const images = [banner1, banner2, banner3, banner4, banner5];
+const images = [banner1, banner2, banner3, banner4, banner5, banner6];
 
 const Hero = () => {
   const [current, setCurrent] = useState(0);

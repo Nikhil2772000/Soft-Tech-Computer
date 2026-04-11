@@ -54,7 +54,7 @@ const Faq = () => {
         <div className="right-content-info">
           <h1 className="hero-headline">Join Us Now And Begin Your Digital Success Journey</h1>
           <p className="hero-subtext">
-            Take your business to new heights by collaborating with Nagpur’s most
+            Take your business to new heights by collaborating with Buldhana most
             credible digital marketing agency, <strong>Motala Soft Tech</strong>.
             Our ROI-focused strategy will bring you tangible results.
           </p>

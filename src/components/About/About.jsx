@@ -14,39 +14,34 @@ const About = () => {
       ([entry]) => {
         if (entry.isIntersecting) {
           aboutRef.current.classList.add("show");
-          video?.play().catch(() => { });
+          video?.play().catch(() => { /* Autoplay prevented */ });
         } else {
           video?.pause();
         }
       },
-      { threshold: 0.3 }
+      { threshold: 0.2 }
     );
 
     if (aboutRef.current) observer.observe(aboutRef.current);
 
-    const enableAudio = () => {
-      if (video) {
-        video.muted = false;
-        setIsMuted(false);
-      }
-      window.removeEventListener("click", enableAudio);
-      window.removeEventListener("touchstart", enableAudio);
+    const handleFirstInteraction = () => {
+      setIsMuted(false);
+      if (video) video.muted = false;
+      window.removeEventListener("click", handleFirstInteraction);
     };
 
-    window.addEventListener("click", enableAudio);
-    window.addEventListener("touchstart", enableAudio);
+    window.addEventListener("click", handleFirstInteraction);
 
     return () => {
       observer.disconnect();
-      window.removeEventListener("click", enableAudio);
-      window.removeEventListener("touchstart", enableAudio);
+      window.removeEventListener("click", handleFirstInteraction);
     };
   }, []);
 
   return (
     <section className="about-section" ref={aboutRef}>
       <div className="about-container">
-
+        
         {/* VIDEO SIDE */}
         <div className="about-visual">
           <div className="video-wrapper">
@@ -56,11 +51,10 @@ const About = () => {
               loop
               muted={isMuted}
               playsInline
-              autoPlay
               className="about-video-element"
             />
             <div className={`audio-indicator ${!isMuted ? "unmuted" : ""}`}>
-              {isMuted ? "🔇 Tap for Sound" : "🔊 Audio On"}
+              {isMuted ? "🔇 Muted" : "🔊 Audio On"}
             </div>
           </div>
         </div>
@@ -81,39 +75,39 @@ const About = () => {
           <p className="main-para">
             <strong>Soft Tech Computer</strong> is a leading Learning & Development Ecosystem
             dedicated to building skilled and job-ready professionals in the IT and accounting domains.
-
-            <br /><br />
-
-
-            With guidance from <strong>industry experts and working professionals</strong>, our students
-            learn the latest technologies and tools that are actively used in the job market, making them
-            confident and career-ready.
           </p>
-          {/* FEATURE CARDS */}
-          <div className="feature-grid">
 
+          <div className="feature-grid">
             <div className="feature-card">
               <div className="card-icon">🎓</div>
-              <h4>Govt. Certified</h4>
-              <p>MS-CIT & KLiC Authorized Center</p>
+              <div>
+                <h4>Govt. Certified</h4>
+                <p>MS-CIT & KLiC Authorized</p>
+              </div>
             </div>
 
             <div className="feature-card">
               <div className="card-icon">🧑‍🏫</div>
-              <h4>Expert Mentors</h4>
-              <p>Learn from working IT professionals</p>
+              <div>
+                <h4>Expert Mentors</h4>
+                <p>Learn from IT pros</p>
+              </div>
             </div>
 
             <div className="feature-card">
               <div className="card-icon">💻</div>
-              <h4>100% Practical</h4>
-              <p>Hands-on training with live projects</p>
+              <div>
+                <h4>100% Practical</h4>
+                <p>Live project training</p>
+              </div>
             </div>
 
             <div className="feature-card">
               <div className="card-icon">📊</div>
-              <h4>Accounting Course</h4>
-              <p>Tally Prime with GST & Returns</p>
+              <div>
+                <h4>Accounting</h4>
+                <p>Tally Prime & GST</p>
+              </div>
             </div>
           </div>
         </div>
