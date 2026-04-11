@@ -103,6 +103,9 @@ const Contact = () => {
       ref={sectionRef}
       className={`contact-section ${visible ? "show" : ""}`}
     >
+
+      
+
       <div className="contact-container">
         {/* LEFT INFO */}
         <div className="contact-info">

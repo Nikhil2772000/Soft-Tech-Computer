@@ -28,14 +28,17 @@ const Navbar = () => {
           </a>
         </div>
 
-        {/* HAMBURGER ICON */}
-        <div className={`menu-icon ${menuOpen ? "open" : ""}`} onClick={toggleMenu}>
+        {/* HAMBURGER ICON - Toggle menuOpen state on click */}
+        <div 
+          className={`menu-icon ${menuOpen ? "open" : ""}`} 
+          onClick={toggleMenu}
+        >
           <span></span>
           <span></span>
           <span></span>
         </div>
 
-        {/* NAV LINKS */}
+        {/* NAV LINKS - Toggled by 'active' class */}
         <ul className={`nav-menu ${menuOpen ? "active" : ""}`}>
           <li><a href="/" className="nav-link" onClick={closeMenu}>Home</a></li>
           <li><a href="/about" className="nav-link" onClick={closeMenu}>About</a></li>
@@ -47,7 +50,7 @@ const Navbar = () => {
         </ul>
       </div>
 
-      {/* MOBILE OVERLAY */}
+      {/* MOBILE OVERLAY - Closes menu when clicking outside */}
       {menuOpen && <div className="nav-overlay" onClick={closeMenu}></div>}
     </nav>
   );

@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./About.css";
 import aboutVideo from "../../assets/snapsave-app_680199827675934_hd.mp4";
+import aboutBanner from "../../assets/about us.jpg";
 
 const About = () => {
   const aboutRef = useRef(null);
@@ -13,68 +14,86 @@ const About = () => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          aboutRef.current.classList.add("show");
-          video?.play().catch(() => { /* Autoplay prevented */ });
+          aboutRef.current?.classList.add("show");
+          video?.play().catch(() => {});
         } else {
           video?.pause();
         }
       },
-      { threshold: 0.2 }
+      { threshold: 0.3 }
     );
 
     if (aboutRef.current) observer.observe(aboutRef.current);
 
-    const handleFirstInteraction = () => {
-      setIsMuted(false);
-      if (video) video.muted = false;
-      window.removeEventListener("click", handleFirstInteraction);
-    };
-
-    window.addEventListener("click", handleFirstInteraction);
-
-    return () => {
-      observer.disconnect();
-      window.removeEventListener("click", handleFirstInteraction);
-    };
+    return () => observer.disconnect();
   }, []);
+
+  // Sync mute state with video
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.muted = isMuted;
+    }
+  }, [isMuted]);
 
   return (
     <section className="about-section" ref={aboutRef}>
+      
+      {/* HERO BANNER */}
+      <div
+        className="about-banner"
+        style={{ backgroundImage: `url(${aboutBanner})` }}
+      >
+        <div className="banner-overlay">
+          <div className="banner-text">
+            <h1>
+              About <span className="text-gradient">Us</span>
+            </h1>
+            <div className="banner-line"></div>
+            <p>Leading the way in Tech Education since 2005</p>
+          </div>
+        </div>
+      </div>
+
       <div className="about-container">
         
-        {/* VIDEO SIDE */}
+        {/* VIDEO */}
         <div className="about-visual">
           <div className="video-wrapper">
             <video
               ref={videoRef}
               src={aboutVideo}
               loop
-              muted={isMuted}
+              muted
+              autoPlay
               playsInline
               className="about-video-element"
             />
-            <div className={`audio-indicator ${!isMuted ? "unmuted" : ""}`}>
-              {isMuted ? "🔇 Muted" : "🔊 Audio On"}
+
+            <div
+              className={`audio-indicator ${!isMuted ? "unmuted" : ""}`}
+              onClick={() => setIsMuted(!isMuted)}
+            >
+              {isMuted ? "🔇 Click to Unmute" : "🔊 Audio On"}
             </div>
           </div>
         </div>
 
-        {/* CONTENT SIDE */}
+        {/* CONTENT */}
         <div className="about-content">
           <div className="header-meta">
-            <span className="est-tag">Est. 2005</span>
-            <span className="about-tag">Premier IT Hub</span>
+            <span className="meta-tag">Est. 2005</span>
+            <span className="meta-tag blue">Premier IT Hub</span>
           </div>
 
           <h2>
-            Empowering Your <span className="text-gradient">Digital Future</span>
+            Empowering Your <br />
+            <span className="text-gradient">Digital Future</span>
           </h2>
 
-          <div className="accent-line"></div>
-
           <p className="main-para">
-            <strong>Soft Tech Computer</strong> is a leading Learning & Development Ecosystem
-            dedicated to building skilled and job-ready professionals in the IT and accounting domains.
+            <strong>Soft Tech Computer</strong> is more than just a training center; we are a 
+            Learning & Development Ecosystem dedicated to building job-ready 
+            professionals for the global tech landscape.
           </p>
 
           <div className="feature-grid">
@@ -87,26 +106,26 @@ const About = () => {
             </div>
 
             <div className="feature-card">
-              <div className="card-icon">🧑‍🏫</div>
-              <div>
-                <h4>Expert Mentors</h4>
-                <p>Learn from IT pros</p>
-              </div>
-            </div>
-
-            <div className="feature-card">
               <div className="card-icon">💻</div>
               <div>
                 <h4>100% Practical</h4>
-                <p>Live project training</p>
+                <p>Hands-on Live Projects</p>
               </div>
             </div>
 
             <div className="feature-card">
-              <div className="card-icon">📊</div>
+              <div className="card-icon">🧑‍🏫</div>
               <div>
-                <h4>Accounting</h4>
-                <p>Tally Prime & GST</p>
+                <h4>Expert Mentors</h4>
+                <p>Industry Professional Faculty</p>
+              </div>
+            </div>
+
+            <div className="feature-card">
+              <div className="card-icon">🚀</div>
+              <div>
+                <h4>Career Trainers</h4>
+                <p>Personalized Guidance</p>
               </div>
             </div>
           </div>
