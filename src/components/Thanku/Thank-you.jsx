@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import "./Thanku.css";
+import "./Thank-you.css";
 import { useNavigate } from "react-router-dom";
 // Ensure the image is in your src folder or public folder
 import natureBg from "../../assets/natures.webp";

@@ -15,7 +15,7 @@ import Testimonials from "./components/Testimonials/Testimonials";
 import Contact from "./components/Contact us/Contact";
 import Policy from "./components/PP/Policy";
 import Service from "./components/Term Service/Service";
-import Thanku from "./components/Thanku/Thanku";
+import Thanku from "./components/Thanku/Thank-you";
 
 
 
