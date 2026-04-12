@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./About.css";
 import aboutVideo from "../../assets/snapsave-app_680199827675934_hd.mp4";
-import aboutBanner from "../../assets/about us.jpg";
 
 const About = () => {
   const aboutRef = useRef(null);
@@ -38,21 +37,7 @@ const About = () => {
   return (
     <section className="about-section" ref={aboutRef}>
       
-      {/* HERO BANNER */}
-      <div
-        className="about-banner"
-        style={{ backgroundImage: `url(${aboutBanner})` }}
-      >
-        <div className="banner-overlay">
-          <div className="banner-text">
-            <h1>
-              About <span className="text-gradient">Us</span>
-            </h1>
-            <div className="banner-line"></div>
-            <p>Leading the way in Tech Education since 2005</p>
-          </div>
-        </div>
-      </div>
+     
 
       <div className="about-container">
         
